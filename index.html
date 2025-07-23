@@ -163,6 +163,44 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* Accordion styles */
+        .accordion-item {
+            border-bottom: 1px solid #e2e8f0; /* gray-200 */
+        }
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background-color: #f0f8ff; /* light blue */
+            cursor: pointer;
+            font-weight: 600;
+            color: #2b6cb0; /* blue-800 */
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+        .accordion-header:hover {
+            background-color: #e6f2ff; /* lighter blue on hover */
+        }
+        .accordion-content {
+            padding: 1rem 1.5rem;
+            background-color: #ffffff;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            border-radius: 0 0 0.5rem 0.5rem;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 500px; /* Adjust as needed for content */
+            padding: 1rem 1.5rem;
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body class="scroll-smooth">
@@ -176,6 +214,7 @@
         <nav class="hidden md:flex space-x-6">
             <a href="#hero" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">首頁</a>
             <a href="#services" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">合作範疇</a>
+            <a href="#elderly-drivers" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">高齡駕駛商機</a>
             <a href="#technologies" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">可移轉技術</a>
             <a href="#patents" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">可授權專利</a>
             <a href="#contact" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">聯絡我們</a>
@@ -191,7 +230,7 @@
             <div class="absolute inset-0 bg-cover bg-center opacity-30 rounded-b-3xl" style="background-image: url('https://placehold.co/1920x1080/28a745/FFFFFF?text=NiEA+ARTC+Collaboration');"></div>
             <div class="relative z-10 text-center max-w-4xl">
                 <h2 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-down">
-                    NiEA 車用聯盟 x ARTC 參訪活動後：<br>探索未來車輛合作機會
+                    NiEA 車用聯盟 x ARTC 參訪活動：<br>探索未來車輛合作機會
                 </h2>
                 <p class="text-lg md:text-xl mb-10 opacity-90 animate-fade-in-up">
                     本次活動旨在為 NiEA 車用聯盟的成員與 ARTC 搭建商機媒合橋樑，共同探索智慧、綠能、安全移動的創新技術與合作潛力。
@@ -258,6 +297,132 @@
                 </div>
             </div>
         </section>
+
+        <!-- Elderly Drivers Solutions & Business Opportunities Section -->
+        <section id="elderly-drivers" class="py-16 px-6 bg-blue-50 rounded-lg shadow-inner mx-auto max-w-7xl mt-12">
+            <h3 class="text-4xl font-bold text-center text-gray-800 mb-12">高齡駕駛解決方案與潛在商機 (合作範例)</h3>
+            <p class="text-center text-gray-600 mb-10 max-w-3xl mx-auto">
+                全球「人口老化海嘯」衝擊下，高齡駕駛面臨感測、認知、決策、控制等能力退化問題，不僅影響自身安全，也對用路人造成潛在風險。然而，這也催生了巨大的市場需求與創新商機。ARTC 結合技術優勢與產業洞察，為您揭示高齡駕駛市場的合作契機。
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <h4 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                        <!-- Warning Icon SVG -->
+                        <svg class="w-10 h-10 text-yellow-500 mr-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                        </svg>
+                        高齡駕駛挑戰與現況
+                    </h4>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>能力退化問題</span>
+                            <svg class="accordion-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-content">
+                            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                <li><strong>感測弱化：</strong> 視、聽覺退化，資訊接收不全。</li>
+                                <li><strong>認知錯化：</strong> 複雜交通資訊處理能力下降。</li>
+                                <li><strong>決策鈍化：</strong> 反應時間較長，判斷力可能遲緩。</li>
+                                <li><strong>控制遲化：</strong> 協調反應能力退化，操作不夠精準。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="accordion-item mt-4">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>潛在風險數據</span>
+                            <svg class="accordion-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="text-gray-700 mb-2">
+                                車速 50 公里時，老年人反應時間比年輕人多 <strong>1.8 秒</strong>，反應距離多 <strong>24 公尺</strong>（約 2 個路口距離）。
+                            </p>
+                            <p class="text-gray-700">
+                                台灣 65 歲以上領有汽機車駕照者約 <strong>471 萬人</strong>，顯示龐大市場需求。
+                            </p>
+                            <p class="text-gray-600 text-sm mt-4">
+                                <a href="https://www.youtube.com/watch?v=YOUR_YOUTUBE_VIDEO_LINK" target="_blank" class="text-blue-600 hover:underline">參考資料：日本銀髮開車事故多，高科技小車詢問度高</a>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Placeholder for Elderly Driver Challenges Image -->
+                    <img src="https://placehold.co/600x300/FFCC00/000000?text=高齡駕駛挑戰示意圖%0A(反應遲緩%2C+視聽覺退化)" alt="高齡駕駛挑戰示意圖" class="w-full h-auto rounded-lg mt-6 shadow-md">
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <h4 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                        <!-- Opportunity Icon SVG -->
+                        <svg class="w-10 h-10 text-green-500 mr-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+                        </svg>
+                        潛在商機與合作方向
+                    </h4>
+                    <p class="text-gray-700 mb-4">高齡駕駛是保持獨立與自由的方式，搭載先進輔助系統的車輛將成為關鍵解方。這為汽車產業帶來了以下商機：</p>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>智慧輔助系統升級</span>
+                            <svg class="accordion-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="text-gray-700">發展更適合高齡者的 ADAS (先進駕駛輔助系統)、駕駛監控系統 (DMS)、自動駕駛技術，介面設計需簡潔清楚。</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item mt-2">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>車輛適配與客製化</span>
+                            <svg class="accordion-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="text-gray-700">建立「車款分類」與「使用限制」制度，推動高齡者專屬安全車型開發，加速誤踩防止系統法制化與應用。</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item mt-2">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>多元出行服務</span>
+                            <svg class="accordion-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="text-gray-700">推動偏鄉或運輸不便地區導入無人車載具，滿足高齡者「最後一哩路」的出行需求。</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item mt-2">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>政策誘因與市場推動</span>
+                            <svg class="accordion-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="text-gray-700">建議政府提供研發補助、採購獎勵，降低車廠開發高齡車款門檻，共同倡議高齡友善交通環境。</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item mt-2">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>微型智駕車應用與技術整合</span>
+                            <svg class="accordion-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="text-gray-700">發展搭載主動煞車及 ADAS 系統的微型智駕車，兼具獨立性與駕駛安全。結合 ARTC 在智駕與線控主動安全技術的優勢，開發適用於微型載具的多元應用。</p>
+                        </div>
+                    </div>
+
+                    <!-- Placeholder for Business Opportunities Image -->
+                    <img src="https://placehold.co/600x300/ADD8E6/000000?text=高齡駕駛商機示意圖%0A(安全%2C+獨立%2C+科技)" alt="高齡駕駛商機示意圖" class="w-full h-auto rounded-lg mt-6 shadow-md">
+                    <p class="text-gray-700 mt-4">
+                        ARTC 相關技術：我們的「自駕車最小風險技術」、「主動安全系統」、「車電功能安全與資安設計驗證技術」、「AI環景影像定位技術」、「L3 車輛駕駛接管偵測系統」等，皆可為這些商機提供核心技術支援。
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <p class="text-xl font-semibold text-gray-800 mb-6">
+                    您是否看到了與高齡駕駛相關的巨大商機？<br>我們期待與您攜手，共同打造更安全、更智慧的移動解決方案！
+                </p>
+                <a href="#contact" class="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 rounded-full text-lg font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+                    立即提案與我們合作
+                </a>
+            </div>
+        </section>
+
 
         <!-- Transferable Technologies Section -->
         <section id="technologies" class="py-16 px-6 bg-white rounded-lg shadow-inner mx-auto max-w-7xl mt-12">
@@ -386,11 +551,6 @@
                             <a href="https://www.artc.org.tw/" target="_blank" class="inline-block bg-white text-blue-700 hover:bg-blue-100 px-6 py-3 rounded-full text-lg font-semibold shadow-md transition-all duration-300 transform hover:scale-105">
                                 前往 ARTC 官方網站
                             </a>
-                            <div class="mt-6">
-                                <p class="text-blue-200 mb-3">或掃描 QR Code 了解更多：</p>
-                                <!-- Placeholder for QR Code -->
-                                <img src="https://placehold.co/150x150/FFFFFF/007BFF?text=QR+Code" alt="ARTC QR Code" class="mx-auto rounded-lg shadow-md">
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -415,7 +575,7 @@
                 <p><strong class="text-gray-900">狀態：</strong> <span id="patentDetailModalStatus"></span></p>
                 <p><strong class="text-gray-900">國別：</strong> <span id="patentDetailModalCountry"></span></p>
                 <p><strong class="text-gray-900">類別：</strong> <span id="patentDetailModalType"></span></p>
-                <p><strong class="text-gray-900">公開日：</strong> <span id="patentDetailModalDate"></span></p>
+                <p><strong class="text-gray-900">公開日：：</strong> <span id="patentDetailModalDate"></span></p>
                 <p><strong class="text-gray-900">公開號：</strong> <span id="patentDetailModalNumber"></span></p>
                 <p><strong class="text-gray-900">專利簡述：</strong> <span id="patentDetailModalDescription"></span></p>
                 <p class="mt-4 text-gray-600">如需進一步了解，請參考聯絡我們區塊的資訊。</p>
@@ -453,7 +613,21 @@
             { id: 'tech-017', name: "自動緊急煞車性能評估", year: "2024", category: "檢測與驗證技術", description: "提供自動緊急煞車系統 (AEB) 的性能評估與驗證服務，符合法規要求。是車輛安全認證的必要環節。" },
             { id: 'tech-018', name: "富氫氣體輔助內燃機引擎燃燒之控制系統", year: "2019", category: "環保節能", description: "透過富氫氣體輔助，優化內燃機引擎燃燒效率，降低排放並提升節能效果。有助於傳統燃油車輛的節能減排。" },
             { id: 'tech-019', name: "廢熱重組產氫裝置", year: "2019", category: "環保節能", description: "利用廢熱進行氫氣重組生產，實現能源循環利用，提升系統整體效率。對於綠色能源技術的發展具有潛力。" },
-            // ... (Add more technologies from your PDF with enhanced descriptions)
+            // Add more technologies from PDF for comprehensive data representation
+            { id: 'tech-020', name: "自駕隊列控制技術", year: "2022", category: "智駕與資通", description: "實現多輛自駕車輛的協同控制，提升車隊行駛效率與安全性。" },
+            { id: 'tech-021', name: "主動安全系統", year: "2022", category: "智駕與資通", description: "整合多項主動安全功能，提供全方位的駕駛輔助與事故預防。" },
+            { id: 'tech-022', name: "自動化車輛進出站軌跡規劃技術", year: "2021", category: "智駕與資通", description: "針對自動駕駛車輛，提供精確的進出站軌跡規劃與控制方案。" },
+            { id: 'tech-023', name: "電動輔助轉向系統模擬驗證平台", year: "2018", category: "新能源與機電整合", description: "提供電動輔助轉向系統 (EPS) 的模擬與驗證環境，加速開發與測試。" },
+            { id: 'tech-024', name: "車道跟隨系統", year: "2017", category: "新能源與機電整合", description: "實現車輛在車道內的自動跟隨功能，提升駕駛舒適性。" },
+            { id: 'tech-025', name: "多電力源最佳化電力調配技術", year: "2017", category: "新能源與機電整合", description: "優化多種電力來源的分配與管理，提升電動車輛的能源效率。" },
+            { id: 'tech-026', name: "車輛動態定位技術", year: "2018", category: "感知與定位", description: "實現車輛在動態行駛過程中的高精度定位，為自動駕駛提供基礎。" },
+            { id: 'tech-027', name: "智慧化屏幕資訊整合顯示系統", year: "2014", category: "感知與定位", description: "整合多源資訊於車載屏幕，提供清晰直觀的駕駛資訊顯示。" },
+            { id: 'tech-028', name: "車輛底盤CAE分析技術", year: "2010", category: "電腦輔助工程設計與分析", description: "利用電腦輔助工程分析，優化車輛底盤結構設計與性能。" },
+            { id: 'tech-029', name: "行人碰撞安全防護CAE分析與改良技術", year: "2007", category: "電腦輔助工程設計與分析", description: "透過CAE模擬分析，提升車輛對行人的碰撞安全防護性能。" },
+            { id: 'tech-030', name: "整車電磁相容性(EMC)研測技術", year: "2012", category: "檢測與驗證技術", description: "提供整車級別的電磁相容性測試與驗證服務，確保車輛電子系統穩定運行。" },
+            { id: 'tech-031', name: "柴油碳微粒過濾器(DPF)自動再生控制技術", year: "2015", category: "檢測與驗證技術", description: "開發DPF自動再生控制技術，有效清除柴油引擎排放的碳微粒，符合環保法規。" },
+            { id: 'tech-032', name: "車輛排放監測系統及方法", year: "2016", category: "環保節能", description: "提供車輛排放的即時監測系統與方法，有助於環保法規的遵循與排放管理。" },
+            { id: 'tech-033', name: "直覺式節能駕駛輔助方法與系統", year: "2015", category: "環保節能", description: "透過直觀的介面與回饋，引導駕駛人採取更節能的駕駛行為，降低油耗。" }
         ];
 
         const patents = [
@@ -464,7 +638,11 @@
             { id: 'patent-004', name: "電控煞車總泵", area: "新能源與機電整合", country: "中國大陸", type: "發明", date: "2024-06-28", number: "CN118254918A", status: "pending", description: "本專利提供一種電控煞車總泵，實現煞車系統的電子化控制，提升煞車響應速度與精準性，為未來線控煞車系統的發展奠定基礎。對於電動車輛的煞車系統升級具有潛力。" },
             { id: 'patent-005', name: "艙內偵測方法及其系統", area: "感知與定位", country: "美國", type: "發明", date: "2024-03-28", number: "US20240104943A1", status: "pending", description: "此專利涵蓋車輛艙內偵測技術，能有效監測駕駛人狀態、乘客行為及車內物品，提升行車安全與乘坐體驗，並為智慧座艙應用提供數據支持。在駕駛監控系統 (DMS) 和乘客監控系統 (OMS) 領域有廣泛應用。" },
             { id: 'patent-006', name: "計算機視覺式車輛定位融合系統及方法", area: "感知與定位", country: "中國大陸", type: "發明", date: "2024-05-14", number: "CN118033704A", status: "pending", description: "本專利結合計算機視覺與多感測器融合技術，提供高精度、高魯棒性的車輛定位解決方案，即使在 GPS 訊號不佳的環境下也能保持精準定位。對於自動駕駛車輛的精準導航至關重要。" },
-            // ... (Add more pending patents from your PDF with enhanced descriptions)
+            // Add more pending patents from PDF
+            { id: 'patent-018', name: "車隊停站與派遣的決策系統及其決策方法", area: "智駕與資通", country: "中國大陸", type: "發明", date: "2024-05-07", number: "CN117994963A", status: "pending", description: "本專利提供一套車隊管理決策系統，優化車輛停站與派遣的效率與策略，適用於物流、共享出行等領域。" },
+            { id: 'patent-019', name: "自駕車之路徑規劃系統及方法", area: "智駕與資通", country: "中國大陸", type: "發明", date: "2023-01-20", number: "CN115626181A", status: "pending", description: "此專利涉及自駕車的路徑規劃系統與方法，旨在為自動駕駛車輛提供安全、高效、舒適的行駛路徑。" },
+            { id: 'patent-020', name: "虛擬軌道偵測系統及其方法", area: "感知與定位", country: "中國大陸", type: "發明", date: "2023-03-03", number: "CN115723751A", status: "pending", description: "本專利提供虛擬軌道偵測系統，用於精準識別和追蹤車輛行駛的虛擬路徑，提升自動駕駛的精確性。" },
+            { id: 'patent-021', name: "傳感器融合的時序同步方法", area: "感知與定位", country: "中國大陸", type: "發明", date: "2024-04-16", number: "CN117890902A", status: "pending", description: "此專利涉及多感測器融合中的時序同步方法，確保不同感測器數據的時間一致性，提升融合感知結果的準確性。" },
 
             // 已獲證之可授權專利項目 (表2)
             { id: 'patent-007', name: "自適應車速控制方法及其自適應車速控制裝置", area: "智駕與資通", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利提供一套自適應巡航控制系統 (ACC)，能根據路況與駕駛行為自動調整車速，提升行車舒適性與安全性。是先進駕駛輔助系統 (ADAS) 的核心功能之一。" },
@@ -478,7 +656,12 @@
             { id: 'patent-015', name: "駕駛者狀態監控器測試方法及其測試系統", area: "感知與定位", country: "TW/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利開發駕駛者狀態監控系統 (DMS) 的測試方法，確保系統能有效偵測駕駛疲勞或分心，提升行車安全。是智慧座艙與主動安全的重要組成部分。" },
             { id: 'patent-016', name: "濾煙器主動再生方法", area: "環保節能", country: "TW/CN/US/TH", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利提供柴油車濾煙器 (DPF) 的主動再生技術，有效清除微粒，降低排放污染，延長 DPF 使用壽命。對於柴油車的環保合規性具有重要意義。" },
             { id: 'patent-017', name: "直覺式節能駕駛輔助方法與系統", area: "環保節能", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利開發一套直覺式節能駕駛輔助系統，透過即時回饋引導駕駛人採取更節能的駕駛行為，降低油耗與排放。有助於提升車輛的燃油經濟性。" },
-            // ... (Add more patents from your PDF with enhanced descriptions and status)
+            // Add more granted patents from PDF
+            { id: 'patent-022', name: "車道維持系統", area: "智駕與資通", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利提供車道維持輔助系統，協助車輛保持在車道中央，降低駕駛疲勞，提升行車安全。" },
+            { id: 'patent-023', name: "車輛碰撞警示系統", area: "智駕與資通", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利提供車輛碰撞警示系統，能預測前方碰撞風險並發出警示，幫助駕駛人及時反應，避免或減輕事故。" },
+            { id: 'patent-024', name: "防鎖死煞車系統及控制方法", area: "新能源與機電整合", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利涉及防鎖死煞車系統 (ABS) 及其控制方法，確保車輛在緊急煞車時仍能保持方向控制能力，提升行車安全。" },
+            { id: 'patent-025', name: "車輛頭燈自適應調節系統", area: "感知與定位", country: "TW/CN", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利提供車輛頭燈的自適應調節系統，能根據行車環境自動調整頭燈照射範圍和亮度，提升夜間行車視野和安全性。" },
+            { id: 'patent-026', name: "車輛排放監測系統及方法", area: "環保節能", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利提供車輛排放的即時監測系統與方法，有助於車輛排放的合規性管理與環保數據收集。" }
         ];
 
         const techContainer = document.getElementById('technology-cards-container');
@@ -487,6 +670,13 @@
         const patentSearchInput = document.getElementById('patent-search');
         const techNoResults = document.getElementById('no-tech-results');
         const patentNoResults = document.getElementById('no-patent-results');
+
+        // Pagination settings
+        const itemsPerPage = 9; // Display 9 items per page (3x3 grid)
+        let currentTechPage = 1;
+        let currentPatentPage = 1;
+        let filteredTechnologiesCache = []; // Cache for filtered tech results
+        let filteredPatentsCache = [];     // Cache for filtered patent results
 
         let currentTechFilter = 'all';
         let currentPatentCategoryFilter = 'all'; // For patent area filter
@@ -535,23 +725,31 @@
             displayPatentInModal(filteredPatentsForModal[currentPatentIndex]);
         }
 
-        // Render Technology Cards
-        function renderTechnologyCards(filter = 'all', searchTerm = '') {
-            techContainer.innerHTML = '';
-            let filteredTechnologies = technologies.filter(tech => {
+        // Render Technology Cards with Pagination
+        function renderTechnologyCards(filter = 'all', searchTerm = '', page = 1) {
+            // First, filter all technologies based on category and search term
+            filteredTechnologiesCache = technologies.filter(tech => {
                 const matchesCategory = (filter === 'all' || tech.category === filter);
                 const matchesSearch = tech.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                                       tech.description.toLowerCase().includes(searchTerm.toLowerCase());
                 return matchesCategory && matchesSearch;
             });
 
-            if (filteredTechnologies.length === 0) {
+            const totalPages = Math.ceil(filteredTechnologiesCache.length / itemsPerPage);
+            currentTechPage = Math.min(Math.max(1, page), totalPages > 0 ? totalPages : 1); // Ensure page is within bounds
+
+            const startIndex = (currentTechPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const technologiesToRender = filteredTechnologiesCache.slice(startIndex, endIndex);
+
+            techContainer.innerHTML = '';
+            if (technologiesToRender.length === 0) {
                 techNoResults.classList.remove('hidden');
             } else {
                 techNoResults.classList.add('hidden');
             }
 
-            filteredTechnologies.forEach(tech => {
+            technologiesToRender.forEach(tech => {
                 const card = document.createElement('div');
                 card.className = 'bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 flex flex-col justify-between';
                 card.innerHTML = `
@@ -568,14 +766,14 @@
                 `;
                 techContainer.appendChild(card);
             });
-            // After rendering, ensure checkboxes reflect current summary state
-            updateCheckboxesFromSummary();
+            updateTechPaginationControls(totalPages);
+            updateCheckboxesFromSummary(); // Re-apply checkbox states after rendering
         }
 
-        // Render Patent Cards
-        function renderPatentCards(categoryFilter = 'all', statusFilter = 'all', searchTerm = '') {
-            patentContainer.innerHTML = '';
-            filteredPatentsForModal = patents.filter(patent => { // Update the global filtered list for modal
+        // Render Patent Cards with Pagination
+        function renderPatentCards(categoryFilter = 'all', statusFilter = 'all', searchTerm = '', page = 1) {
+            // First, filter all patents based on category, status, and search term
+            filteredPatentsCache = patents.filter(patent => {
                 const matchesCategory = (categoryFilter === 'all' || patent.area === categoryFilter);
                 const matchesStatus = (statusFilter === 'all' || patent.status === statusFilter);
                 const matchesSearch = patent.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -583,13 +781,21 @@
                 return matchesCategory && matchesStatus && matchesSearch;
             });
 
-            if (filteredPatentsForModal.length === 0) {
+            const totalPages = Math.ceil(filteredPatentsCache.length / itemsPerPage);
+            currentPatentPage = Math.min(Math.max(1, page), totalPages > 0 ? totalPages : 1); // Ensure page is within bounds
+
+            const startIndex = (currentPatentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const patentsToRender = filteredPatentsCache.slice(startIndex, endIndex);
+
+            patentContainer.innerHTML = '';
+            if (patentsToRender.length === 0) {
                 patentNoResults.classList.remove('hidden');
             } else {
                 patentNoResults.classList.add('hidden');
             }
 
-            filteredPatentsForModal.forEach((patent, index) => {
+            patentsToRender.forEach((patent, index) => {
                 const card = document.createElement('div');
                 card.className = 'bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 flex flex-col justify-between';
                 card.innerHTML = `
@@ -608,14 +814,8 @@
                 `;
                 patentContainer.appendChild(card);
             });
-            // After rendering, ensure checkboxes reflect current summary state
-            updateCheckboxesFromSummary();
-        }
-
-        // Function to open patent detail modal from card
-        function openPatentDetail(index) {
-            currentPatentIndex = index;
-            displayPatentInModal(filteredPatentsForModal[currentPatentIndex]);
+            updatePatentPaginationControls(totalPages);
+            updateCheckboxesFromSummary(); // Re-apply checkbox states after rendering
         }
 
         // Update the "合作意向簡述" textarea based on selected checkboxes
@@ -661,6 +861,109 @@
             document.getElementById('no-interest-checkbox').checked = currentSummary.includes("以上資料我都沒有興趣");
         }
 
+        // Accordion Toggle Function
+        function toggleAccordion(header) {
+            const item = header.closest('.accordion-item');
+            const content = header.nextElementSibling; // The accordion-content div
+
+            if (item.classList.contains('active')) {
+                item.classList.remove('active');
+                content.style.maxHeight = null; // Collapse
+                content.style.paddingTop = '0';
+                content.style.paddingBottom = '0';
+            } else {
+                // Close all other open accordions in the same section if desired
+                // document.querySelectorAll('.accordion-item.active').forEach(openItem => {
+                //     openItem.classList.remove('active');
+                //     openItem.querySelector('.accordion-content').style.maxHeight = null;
+                //     openItem.querySelector('.accordion-content').style.paddingTop = '0';
+                //     openItem.querySelector('.accordion-content').style.paddingBottom = '0';
+                // });
+
+                item.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + "px"; // Expand to content height
+                content.style.paddingTop = '1rem';
+                content.style.paddingBottom = '1.5rem'; /* Match original padding */
+            }
+        }
+
+        // Pagination Controls for Technologies
+        function updateTechPaginationControls(totalPages) {
+            let paginationDiv = document.getElementById('tech-pagination-controls');
+            if (!paginationDiv) {
+                paginationDiv = document.createElement('div');
+                paginationDiv.id = 'tech-pagination-controls';
+                paginationDiv.className = 'flex justify-center items-center space-x-2 mt-8';
+                techContainer.parentNode.insertBefore(paginationDiv, techNoResults.nextSibling);
+            }
+            paginationDiv.innerHTML = '';
+
+            if (totalPages <= 1) return;
+
+            // Previous button
+            const prevButton = document.createElement('button');
+            prevButton.className = 'px-4 py-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed';
+            prevButton.textContent = '上一頁';
+            prevButton.disabled = currentTechPage === 1;
+            prevButton.onclick = () => renderTechnologyCards(currentTechFilter, techSearchInput.value, currentTechPage - 1);
+            paginationDiv.appendChild(prevButton);
+
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.className = `px-4 py-2 rounded-full ${currentTechPage === i ? 'bg-blue-700 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'} transition-colors duration-200`;
+                pageButton.textContent = i;
+                pageButton.onclick = () => renderTechnologyCards(currentTechFilter, techSearchInput.value, i);
+                paginationDiv.appendChild(pageButton);
+            }
+
+            // Next button
+            const nextButton = document.createElement('button');
+            nextButton.className = 'px-4 py-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed';
+            nextButton.textContent = '下一頁';
+            nextButton.disabled = currentTechPage === totalPages;
+            nextButton.onclick = () => renderTechnologyCards(currentTechFilter, techSearchInput.value, currentTechPage + 1);
+            paginationDiv.appendChild(nextButton);
+        }
+
+        // Pagination Controls for Patents
+        function updatePatentPaginationControls(totalPages) {
+            let paginationDiv = document.getElementById('patent-pagination-controls');
+            if (!paginationDiv) {
+                paginationDiv = document.createElement('div');
+                paginationDiv.id = 'patent-pagination-controls';
+                paginationDiv.className = 'flex justify-center items-center space-x-2 mt-8';
+                patentContainer.parentNode.insertBefore(paginationDiv, patentNoResults.nextSibling);
+            }
+            paginationDiv.innerHTML = '';
+
+            if (totalPages <= 1) return;
+
+            // Previous button
+            const prevButton = document.createElement('button');
+            prevButton.className = 'px-4 py-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed';
+            prevButton.textContent = '上一頁';
+            prevButton.disabled = currentPatentPage === 1;
+            prevButton.onclick = () => renderPatentCards(currentPatentCategoryFilter, currentPatentStatusFilter, patentSearchInput.value, currentPatentPage - 1);
+            paginationDiv.appendChild(prevButton);
+
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.className = `px-4 py-2 rounded-full ${currentPatentPage === i ? 'bg-blue-700 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'} transition-colors duration-200`;
+                pageButton.textContent = i;
+                pageButton.onclick = () => renderPatentCards(currentPatentCategoryFilter, currentPatentStatusFilter, patentSearchInput.value, i);
+                paginationDiv.appendChild(pageButton);
+            }
+
+            // Next button
+            const nextButton = document.createElement('button');
+            nextButton.className = 'px-4 py-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed';
+            nextButton.textContent = '下一頁';
+            nextButton.disabled = currentPatentPage === totalPages;
+            nextButton.onclick = () => renderPatentCards(currentPatentCategoryFilter, currentPatentStatusFilter, patentSearchInput.value, currentPatentPage + 1);
+            paginationDiv.appendChild(nextButton);
+        }
 
         // Initialize rendering on page load
         document.addEventListener('DOMContentLoaded', () => {
@@ -680,23 +983,23 @@
 
                     if (filterType === 'tech') {
                         currentTechFilter = filterValue;
-                        renderTechnologyCards(currentTechFilter, techSearchInput.value);
+                        renderTechnologyCards(currentTechFilter, techSearchInput.value, 1); // Reset to page 1 on filter change
                     } else if (filterType === 'patent-category') {
                         currentPatentCategoryFilter = filterValue;
-                        renderPatentCards(currentPatentCategoryFilter, currentPatentStatusFilter, patentSearchInput.value);
+                        renderPatentCards(currentPatentCategoryFilter, currentPatentStatusFilter, patentSearchInput.value, 1); // Reset to page 1
                     } else if (filterType === 'patent-status') {
                         currentPatentStatusFilter = filterValue;
-                        renderPatentCards(currentPatentCategoryFilter, currentPatentStatusFilter, patentSearchInput.value);
+                        renderPatentCards(currentPatentCategoryFilter, currentPatentStatusFilter, patentSearchInput.value, 1); // Reset to page 1
                     }
                 });
             });
 
             techSearchInput.addEventListener('input', (event) => {
-                renderTechnologyCards(currentTechFilter, event.target.value);
+                renderTechnologyCards(currentTechFilter, event.target.value, 1); // Reset to page 1 on search
             });
 
             patentSearchInput.addEventListener('input', (event) => {
-                renderPatentCards(currentPatentCategoryFilter, currentPatentStatusFilter, event.target.value);
+                renderPatentCards(currentPatentCategoryFilter, currentPatentStatusFilter, event.target.value, 1); // Reset to page 1
             });
 
             // Contact Form Submission
