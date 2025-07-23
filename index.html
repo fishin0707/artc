@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NiEA 車用聯盟 x ARTC | 商機媒合平台</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global variables provided by the Canvas environment
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let app, db, auth;
+
+        // Initialize Firebase and authenticate anonymously
+        async function initializeFirebase() {
+            try {
+                if (Object.keys(firebaseConfig).length === 0) {
+                    console.error("Firebase config is missing. Data submission will not work.");
+                    return;
+                }
+                app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                // Sign in anonymously
+                await signInAnonymously(auth);
+                console.log("Firebase initialized and signed in anonymously.");
+            } catch (error) {
+                console.error("Error initializing Firebase or signing in:", error);
+            }
+        }
+
+        initializeFirebase();
+
+        // Make db and addDoc globally accessible for the form submission
+        window.db = db;
+        window.addDoc = addDoc;
+        window.collection = collection;
+        window.auth = auth; // Also expose auth for potential future use if needed
+        window.appId = appId; // Expose appId for collection path
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .filter-button.active {
+            background-color: #1a73e8;
+            color: white;
+        }
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+        /* Ensure card descriptions can expand fully */
+        .tech-description {
+            display: block; /* Override line-clamp if it was applied */
+            overflow: visible;
+            text-overflow: unset;
+            white-space: normal;
+        }
+
+        /* Modal specific styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(0);
+            transition: transform 0.3s ease-out;
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .modal-close-button:hover,
+        .modal-close-button:focus {
+            color: #333;
+        }
+        .modal-navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            gap: 1rem;
+        }
+        .modal-navigation-buttons button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px; /* Full rounded */
+            font-weight: 500;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .modal-navigation-buttons button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        /* Styles for the checkbox sections */
+        .card-checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Align to the right */
+            margin-bottom: 0.5rem; /* Space below checkbox */
+        }
+        .card-checkbox-container label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: #4a5568; /* Gray-700 */
+        }
+        .card-checkbox-container input[type="checkbox"] {
+            margin-left: 0.5rem; /* Space between text and checkbox */
+            height: 1.25rem; /* h-5 */
+            width: 1.25rem; /* w-5 */
+            border-radius: 0.25rem; /* rounded */
+            border: 1px solid #cbd5e0; /* border-gray-300 */
+            accent-color: #2563eb; /* blue-600 */
+        }
+        .loading-indicator {
+            display: none;
+            margin-left: 1rem;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="scroll-smooth">
+    <!-- Header -->
+    <header class="bg-white shadow-md py-4 px-6 flex justify-between items-center fixed w-full z-50 rounded-b-lg">
+        <div class="flex items-center">
+            <!-- NiEA Logo Placeholder -->
+            <img src="https://placehold.co/60x60/4CAF50/FFFFFF?text=NiEA" alt="NiEA Logo" class="h-12 w-12 rounded-full mr-3 shadow-md">
+            <h1 class="text-2xl font-bold text-gray-800">NiEA 車用聯盟</h1>
+        </div>
+        <nav class="hidden md:flex space-x-6">
+            <a href="#hero" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">首頁</a>
+            <a href="#services" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">合作範疇</a>
+            <a href="#technologies" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">可移轉技術</a>
+            <a href="#patents" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">可授權專利</a>
+            <a href="#contact" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">聯絡我們</a>
+        </nav>
+        <button class="md:hidden text-gray-600 hover:text-blue-600 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+    </header>
+
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section id="hero" class="relative bg-gradient-to-r from-green-600 to-green-800 text-white py-24 md:py-32 px-6 flex items-center justify-center rounded-b-3xl shadow-lg">
+            <div class="absolute inset-0 bg-cover bg-center opacity-30 rounded-b-3xl" style="background-image: url('https://placehold.co/1920x1080/28a745/FFFFFF?text=NiEA+ARTC+Collaboration');"></div>
+            <div class="relative z-10 text-center max-w-4xl">
+                <h2 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-down">
+                    NiEA 車用聯盟 x ARTC 參訪活動後：<br>探索未來車輛合作機會
+                </h2>
+                <p class="text-lg md:text-xl mb-10 opacity-90 animate-fade-in-up">
+                    本次活動旨在為 NiEA 車用聯盟的成員與 ARTC 搭建商機媒合橋樑，共同探索智慧、綠能、安全移動的創新技術與合作潛力。
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    <a href="#technologies" class="bg-white text-green-700 hover:bg-green-100 px-8 py-4 rounded-full text-lg font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+                        探索可移轉技術
+                    </a>
+                    <a href="#patents" class="bg-green-700 text-white hover:bg-green-800 border-2 border-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+                        瀏覽可授權專利
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Service Scope Section -->
+        <section id="services" class="py-16 px-6 bg-gray-50 rounded-lg shadow-inner mx-auto max-w-7xl mt-12">
+            <h3 class="text-4xl font-bold text-center text-gray-800 mb-12">ARTC 技轉服務核心領域</h3>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+                ARTC 憑藉多年深耕車輛科技的經驗，在以下關鍵領域擁有豐富的可移轉技術與專利，為產業提供全面的創新支援。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center border border-gray-100">
+                    <div class="text-blue-600 mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9.75 19.5M12 17V19.5M14.25 17V19.5M16.5 17V19.5M18.75 17V19.5M21 17V19.5M3 17V19.5M5.25 17V19.5M7.5 17V19.5M12 14.25V17M14.25 14.25V17M16.5 14.25V17M18.75 14.25V17M21 14.25V17M3 14.25V17M5.25 14.25V17M7.5 14.25V17M12 11.25V14.25M14.25 11.25V14.25M16.5 11.25V14.25M18.75 11.25V14.25M21 11.25V14.25M3 11.25V14.25M5.25 11.25V14.25M7.5 11.25V14.25M12 8.25V11.25M14.25 8.25V11.25M16.5 8.25V11.25M18.75 8.25V11.25M21 8.25V11.25M3 8.25V11.25M5.25 8.25V11.25M7.5 8.25V11.25M12 5.25V8.25M14.25 5.25V8.25M16.5 5.25V8.25M18.75 5.25V8.25M21 5.25V8.25M3 5.25V8.25M5.25 5.25V8.25M7.5 5.25V8.25M12 2.25V5.25M14.25 2.25V5.25M16.5 2.25V5.25M18.75 2.25V5.25M21 2.25V5.25M3 2.25V5.25M5.25 2.25V5.25M7.5 2.25V5.25M12 1.5V2.25M14.25 1.5V2.25M16.5 1.5V2.25M18.75 1.5V2.25M21 1.5V2.25M3 1.5V2.25M5.25 1.5V2.25M7.5 1.5V2.25M1.5 1.5V2.25M1.5 2.25H22.5M1.5 5.25H22.5M1.5 8.25H22.5M1.5 11.25H22.5M1.5 14.25H22.5M1.5 17.25H22.5M1.5 20.25H22.5M1.5 22.5H22.5M1.5 1.5H22.5M1.5 22.5V1.5M22.5 1.5V22.5M1.5 20.25V1.5M22.5 20.25V1.5M1.5 17.25V1.5M22.5 17.25V1.5M1.5 14.25V1.5M22.5 14.25V1.5M1.5 11.25V1.5M22.5 11.25V1.5M1.5 8.25V1.5M22.5 8.25V1.5M1.5 5.25V1.5M22.5 5.25V1.5M1.5 2.25V1.5M22.5 2.25V1.5"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-2">智駕與資通</h4>
+                    <p class="text-gray-600">智慧駕駛、自動駕駛、車聯網、資安防護。</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center border border-gray-100">
+                    <div class="text-blue-600 mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-2">新能源與機電整合</h4>
+                    <p class="text-gray-600">電動車、氫能、熱管理、電力管理、煞車與轉向系統。</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center border border-gray-100">
+                    <div class="text-blue-600 mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-2">感知與定位</h4>
+                    <p class="text-gray-600">環境感知、高精定位、駕駛人監控、智慧車燈。</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center border border-gray-100">
+                    <div class="text-blue-600 mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m14-6h2m-2 6h2M15 9a3 3 0 10-3 3m0 0a3 3 0 10-3 3m3-3a3 3 0 103-3m0 0a3 3 0 10-3-3m9 2a3 3 0 11-6 0m6 0a3 3 0 10-6 0m6 0a3 3 0 11-6 0m6 0a3 3 0 10-6 0"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-2">電腦輔助工程設計與分析</h4>
+                    <p class="text-gray-600">CAE 模擬、結構強度分析。</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center border border-gray-100">
+                    <div class="text-blue-600 mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-2">檢測與驗證技術</h4>
+                    <p class="text-gray-600">系統驗證、品質檢測、電磁相容性 (EMC)。</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center border border-gray-100">
+                    <div class="text-blue-600 mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-2">環保節能</h4>
+                    <p class="text-gray-600">污染防治、節能駕駛。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transferable Technologies Section -->
+        <section id="technologies" class="py-16 px-6 bg-white rounded-lg shadow-inner mx-auto max-w-7xl mt-12">
+            <h3 class="text-4xl font-bold text-center text-gray-800 mb-12">可移轉技術項目</h3>
+            <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                以下是 ARTC 近年來可移轉的研發成果，點擊各領域標籤或使用搜尋功能，快速找到您感興趣的技術。
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-3 mb-4">
+                <button class="filter-button bg-gray-200 text-gray-700 px-5 py-2 rounded-full font-medium hover:bg-blue-200 transition-colors duration-200 active" data-filter-type="tech" data-filter-value="all">全部</button>
+                <button class="filter-button bg-gray-200 text-gray-700 px-5 py-2 rounded-full font-medium hover:bg-blue-200 transition-colors duration-200" data-filter-type="tech" data-filter-value="智駕與資通">智駕與資通</button>
+                <button class="filter-button bg-gray-200 text-gray-700 px-5 py-2 rounded-full font-medium hover:bg-blue-200 transition-colors duration-200" data-filter-type="tech" data-filter-value="新能源與機電整合">新能源與機電整合</button>
+                <button class="filter-button bg-gray-200 text-gray-700 px-5 py-2 rounded-full font-medium hover:bg-blue-200 transition-colors duration-200" data-filter-type="tech" data-filter-value="感知與定位">感知與定位</button>
+                <button class="filter-button bg-gray-200 text-gray-700 px-5 py-2 rounded-full font-medium hover:bg-blue-200 transition-colors duration-200" data-filter-type="tech" data-filter-value="電腦輔助工程設計與分析">電腦輔助工程設計與分析</button>
+                <button class="filter-button bg-gray-200 text-gray-700 px-5 py-2 rounded-full font-medium hover:bg-blue-200 transition-colors duration-200" data-filter-type="tech" data-filter-value="檢測與驗證技術">檢測與驗證技術</button>
+                <button class="filter-button bg-gray-200 text-gray-700 px-5 py-2 rounded-full font-medium hover:bg-blue-200 transition-colors duration-200" data-filter-type="tech" data-filter-value="環保節能">環保節能</button>
+            </div>
+
+            <div class="flex justify-center mb-8">
+                <input type="text" id="tech-search" placeholder="搜尋技術名稱或簡述..." class="w-full max-w-md px-5 py-3 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200">
+            </div>
+
+            <div id="technology-cards-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Technology cards will be rendered here by JavaScript -->
+            </div>
+            <p id="no-tech-results" class="text-center text-gray-500 mt-8 hidden">沒有找到相關技術。</p>
+        </section>
+
+        <!-- Licensable Patents Section -->
+        <section id="patents" class="py-16 px-6 bg-gray-50 rounded-lg shadow-inner mx-auto max-w-7xl mt-12">
+            <h3 class="text-4xl font-bold text-center text-gray-800 mb-12">可授權專利項目</h3>
+            <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                ARTC 擁有豐富的國內外專利組合，提供多樣化的授權合作模式，助您強化競爭力。點擊各領域標籤、專利狀態或使用搜尋功能，快速找到您感興趣的專利。
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-3 mb-4">
+                <button class="filter-button bg-gray-200 text-gray-700 px-5 py-2 rounded-full font-medium hover:bg-blue-200 transition-colors duration-200 active" data-filter-type="patent-category" data-filter-value="all">全部領域</button>
+                <button class="filter-button bg-gray-200 text-gray-700 px-5 py-2 rounded-full font-medium hover:bg-blue-200 transition-colors duration-200" data-filter-type="patent-category" data-filter-value="智駕與資通">智駕與資通</button>
+                <button class="filter-button bg-gray-200 text-gray-700 px-5 py-2 rounded-full font-medium hover:bg-blue-200 transition-colors duration-200" data-filter-type="patent-category" data-filter-value="新能源與機電整合">新能源與機電整合</button>
+                <button class="filter-button bg-gray-200 text-gray-700 px-5 py-2 rounded-full font-medium hover:bg-blue-200 transition-colors duration-200" data-filter-type="patent-category" data-filter-value="感知與定位">感知與定位</button>
+                <button class="filter-button bg-gray-200 text-gray-700 px-5 py-2 rounded-full font-medium hover:bg-blue-200 transition-colors duration-200" data-filter-type="patent-category" data-filter-value="環保節能">環保節能</button>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3 mb-4">
+                <button class="filter-button bg-gray-200 text-gray-700 px-5 py-2 rounded-full font-medium hover:bg-blue-200 transition-colors duration-200 active" data-filter-type="patent-status" data-filter-value="all">全部狀態</button>
+                <button class="filter-button bg-gray-200 text-gray-700 px-5 py-2 rounded-full font-medium hover:bg-blue-200 transition-colors duration-200" data-filter-type="patent-status" data-filter-value="pending">審查中</button>
+                <button class="filter-button bg-gray-200 text-gray-700 px-5 py-2 rounded-full font-medium hover:bg-blue-200 transition-colors duration-200" data-filter-type="patent-status" data-filter-value="granted">已獲證</button>
+            </div>
+
+            <div class="flex justify-center mb-8">
+                <input type="text" id="patent-search" placeholder="搜尋專利名稱或簡述..." class="w-full max-w-md px-5 py-3 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200">
+            </div>
+
+            <div id="patent-cards-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Patent cards will be rendered here by JavaScript -->
+            </div>
+            <p id="no-patent-results" class="text-center text-gray-500 mt-8 hidden">沒有找到相關專利。</p>
+        </section>
+
+        <!-- Contact Us Section -->
+        <section id="contact" class="py-16 px-6 bg-blue-700 text-white rounded-t-3xl shadow-lg mx-auto max-w-7xl mt-12">
+            <h3 class="text-4xl font-bold text-center mb-12">聯絡我們，開啟合作</h3>
+            <p class="text-center text-blue-100 mb-10 max-w-3xl mx-auto">
+                如果您對 ARTC 的技轉服務感興趣，或希望進一步探討合作可能性，請透過以下方式與我們聯繫。
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <!-- Contact Form -->
+                <div class="bg-blue-800 p-8 rounded-xl shadow-xl">
+                    <h4 class="text-2xl font-semibold mb-6">提交您的合作意向</h4>
+                    <form id="contact-form" class="space-y-5">
+                        <div>
+                            <label for="company-name" class="block text-blue-100 text-sm font-medium mb-2">公司名稱</label>
+                            <input type="text" id="company-name" name="company-name" required class="w-full px-4 py-3 rounded-lg bg-blue-900 border border-blue-700 text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        </div>
+                        <div>
+                            <label for="contact-person" class="block text-blue-100 text-sm font-medium mb-2">聯絡人姓名</label>
+                            <input type="text" id="contact-person" name="contact-person" required class="w-full px-4 py-3 rounded-lg bg-blue-900 border border-blue-700 text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-blue-100 text-sm font-medium mb-2">電子郵件</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg bg-blue-900 border border-blue-700 text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-blue-100 text-sm font-medium mb-2">聯絡電話</label>
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-lg bg-blue-900 border border-blue-700 text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        </div>
+                        
+                        <!-- "None of the above" option -->
+                        <div>
+                            <label class="flex items-center text-blue-100">
+                                <input type="checkbox" id="no-interest-checkbox" name="no-interest" value="以上資料我都沒有興趣" class="form-checkbox h-5 w-5 text-blue-600 rounded" onchange="updateInterestSummary()">
+                                <span class="ml-2">以上資料我都沒有興趣 (請在下方簡述您的需求)</span>
+                            </label>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-blue-100 text-sm font-medium mb-2">合作意向簡述</label>
+                            <textarea id="message" name="message" rows="6" class="w-full px-4 py-3 rounded-lg bg-blue-900 border border-blue-700 text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-white text-blue-700 hover:bg-blue-100 px-6 py-3 rounded-full text-lg font-semibold shadow-md transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+                            提交意向
+                            <span id="submit-loading" class="loading-indicator"></span>
+                        </button>
+                    </form>
+                    <div id="form-message" class="mt-4 text-center text-green-300 hidden"></div>
+                </div>
+
+                <!-- Direct Contact Info -->
+                <div class="bg-blue-800 p-8 rounded-xl shadow-xl">
+                    <h4 class="text-2xl font-semibold mb-6">直接聯絡資訊</h4>
+                    <div class="space-y-6">
+                        <div>
+                            <p class="text-blue-200 text-lg font-medium mb-2">可移轉技術洽詢：</p>
+                            <p class="text-blue-100"><strong class="text-white">鄭先生：</strong> 04-7811222 分機 2367</p>
+                            <p class="text-blue-100">Email: <a href="mailto:steven0829@artc.org.tw" class="underline hover:text-white">steven0829@artc.org.tw</a></p>
+                            <p class="text-blue-100 mt-3"><strong class="text-white">蔡小姐：</strong> 04-7811222 分機 5105</p>
+                            <p class="text-blue-100">Email: <a href="mailto:Lijun7329@artc.org.tw" class="underline hover:text-white">Lijun7329@artc.org.tw</a></p>
+                        </div>
+                        <div>
+                            <p class="text-blue-200 text-lg font-medium mb-2">可授權專利洽詢：</p>
+                            <p class="text-blue-100"><strong class="text-white">陳小姐：</strong> 04-7811222 分機 2345</p>
+                            <p class="text-blue-100">Email: <a href="mailto:chloe@artc.org.tw" class="underline hover:text-white">chloe@artc.org.tw</a></p>
+                        </div>
+                        <div class="mt-8 text-center">
+                            <a href="https://www.artc.org.tw/" target="_blank" class="inline-block bg-white text-blue-700 hover:bg-blue-100 px-6 py-3 rounded-full text-lg font-semibold shadow-md transition-all duration-300 transform hover:scale-105">
+                                前往 ARTC 官方網站
+                            </a>
+                            <div class="mt-6">
+                                <p class="text-blue-200 mb-3">或掃描 QR Code 了解更多：</p>
+                                <!-- Placeholder for QR Code -->
+                                <img src="https://placehold.co/150x150/FFFFFF/007BFF?text=QR+Code" alt="ARTC QR Code" class="mx-auto rounded-lg shadow-md">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-8 px-6 text-center rounded-t-lg">
+        <p>&copy; 2025 NiEA 車用聯盟. All rights reserved.</p>
+        <p class="mt-2 text-sm">技術合作夥伴：ARTC 車輛中心</p>
+        <p class="mt-1 text-sm">主辦單位：DOIT 經濟部產業技術司 88 經濟部能源署</p>
+    </footer>
+
+    <!-- Patent Detail Modal -->
+    <div id="patentDetailModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close-button" onclick="closeModal('patentDetailModal')">&times;</span>
+            <h4 id="patentDetailModalTitle" class="text-3xl font-bold text-gray-800 mb-4"></h4>
+            <div id="patentDetailModalContent" class="text-gray-700 space-y-3 flex-grow">
+                <p><strong class="text-gray-900">領域別：</strong> <span id="patentDetailModalArea"></span></p>
+                <p><strong class="text-gray-900">狀態：</strong> <span id="patentDetailModalStatus"></span></p>
+                <p><strong class="text-gray-900">國別：</strong> <span id="patentDetailModalCountry"></span></p>
+                <p><strong class="text-gray-900">類別：</strong> <span id="patentDetailModalType"></span></p>
+                <p><strong class="text-gray-900">公開日：</strong> <span id="patentDetailModalDate"></span></p>
+                <p><strong class="text-gray-900">公開號：</strong> <span id="patentDetailModalNumber"></span></p>
+                <p><strong class="text-gray-900">專利簡述：</strong> <span id="patentDetailModalDescription"></span></p>
+                <p class="mt-4 text-gray-600">如需進一步了解，請參考聯絡我們區塊的資訊。</p>
+            </div>
+            <div class="modal-navigation-buttons">
+                <button id="prevPatentBtn" class="bg-blue-500 text-white hover:bg-blue-600" onclick="navigatePatent(-1)">上一則</button>
+                <button id="nextPatentBtn" class="bg-blue-500 text-white hover:bg-blue-600" onclick="navigatePatent(1)">下一則</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data extracted from the provided PDF
+        // Assign unique IDs to technologies and patents
+        const technologies = [
+            // 114年業界合作計畫項目
+            { id: 'tech-001', name: "車輛資安防護智慧域控制器技術", year: "2025", category: "智駕與資通", description: "此技術提供先進的車輛資安防護解決方案，確保車載系統與通訊安全，抵禦網路威脅。特別適用於車用聯盟在智慧網聯汽車領域的資安佈局。" },
+            { id: 'tech-002', name: "聯網自動駕駛技術", year: "2025", category: "智駕與資通", description: "整合車輛聯網功能，實現更安全、更高效的自動駕駛體驗，提升道路協同能力。是車用聯盟推動自動駕駛商用化的關鍵技術。" },
+            { id: 'tech-003', name: "電動液壓煞車控制技術", year: "2025", category: "新能源與機電整合", description: "優化電動車輛的煞車性能，提供精確的煞車控制與能量回收效率。對於電動車輛的性能提升與能源管理具有重要意義。" },
+            { id: 'tech-004', name: "氫能載具熱管理系統匹配設計技術", year: "2025", category: "新能源與機電整合", description: "針對氫燃料電池車輛，提供高效的熱管理系統設計與匹配方案，確保系統穩定運行。有助於車用聯盟在氫能車輛領域的技術發展。" },
+
+            // 歷年研發成果可移轉技術項目 (部分選取，已增加關鍵字以利搜尋)
+            { id: 'tech-005', name: "具資安防護之OTA車輛軟體更新技術", year: "2024", category: "智駕與資通", description: "提供安全的空中下載 (OTA) 軟體更新方案，確保車輛系統的即時更新與資安防護。對於車用軟體定義汽車及資安合規性至關重要。" },
+            { id: 'tech-006', name: "自駕車最小風險技術", year: "2024", category: "智駕與資通", description: "開發自駕車在緊急情況下的最小風險策略，提升行車安全與應變能力。是自動駕駛系統安全驗證的核心環節。" },
+            { id: 'tech-007', name: "主動安全系統(自動車道變換)", year: "2024", category: "智駕與資通", description: "實現車輛自動安全變換車道功能，提升駕駛輔助系統的智慧化水平。有助於提升行車舒適性與安全性。" },
+            { id: 'tech-008', name: "虛擬軌道自駕技術", year: "2023", category: "智駕與資通", description: "透過虛擬軌道規劃，實現車輛在特定場景下的精準自動駕駛與路徑追蹤。適用於物流車隊、園區自駕等應用。" },
+            { id: 'tech-009', name: "自駕隊列路口決策技術", year: "2023", category: "智駕與資通", description: "優化自駕車隊在複雜路口環境下的決策能力，提升通行效率與安全性。對於智慧交通系統的發展具有關鍵作用。" },
+            { id: 'tech-010', name: "車電功能安全與資安設計驗證技術", year: "2023", category: "智駕與資通", description: "提供車輛電子系統的功能安全與資安設計驗證服務，確保產品符合國際標準。是車用電子產品開發的重要保障。" },
+            { id: 'tech-011', name: "AI環景影像定位技術", year: "2024", category: "感知與定位", description: "結合 AI 影像處理與環景感知，實現車輛高精度定位與環境理解。適用於自動駕駛、停車輔助等場景。" },
+            { id: 'tech-012', name: "L3 車輛駕駛接管偵測系統", year: "2024", category: "感知與定位", description: "針對 Level 3 自動駕駛，開發駕駛人接管狀態的精準偵測系統，確保安全過渡。是實現高階自動駕駛的關鍵安全機制。" },
+            { id: 'tech-013', name: "車輛環周異質感知融合偵測及追蹤技術", year: "2024", category: "感知與定位", description: "整合多種異質感測器數據（如雷達、光達、攝影機），實現車輛周圍環境的全面偵測與目標追蹤。提升自動駕駛系統的環境感知能力。" },
+            { id: 'tech-014', name: "電動車多合一馬達驅控器可靠度模擬分析技術", year: "2023", category: "電腦輔助工程設計與分析", description: "利用 CAE 模擬分析，評估電動車馬達驅控器的可靠度與性能，優化設計。有助於加速電動車動力系統的開發與驗證。" },
+            { id: 'tech-015', name: "氫洩漏模擬分析與通風設計技術", year: "2024", category: "電腦輔助工程設計與分析", description: "針對氫能車輛，提供氫氣洩漏模擬與通風系統的優化設計，確保安全。是氫能車輛安全設計的重要環節。" },
+            { id: 'tech-016', name: "EV多合一系統結構強度與耐候驗證技術", year: "2024", category: "檢測與驗證技術", description: "對電動車多合一系統進行結構強度與耐候性驗證，確保其在嚴苛環境下的可靠性。保障電動車輛長期運行的穩定性。" },
+            { id: 'tech-017', name: "自動緊急煞車性能評估", year: "2024", category: "檢測與驗證技術", description: "提供自動緊急煞車系統 (AEB) 的性能評估與驗證服務，符合法規要求。是車輛安全認證的必要環節。" },
+            { id: 'tech-018', name: "富氫氣體輔助內燃機引擎燃燒之控制系統", year: "2019", category: "環保節能", description: "透過富氫氣體輔助，優化內燃機引擎燃燒效率，降低排放並提升節能效果。有助於傳統燃油車輛的節能減排。" },
+            { id: 'tech-019', name: "廢熱重組產氫裝置", year: "2019", category: "環保節能", description: "利用廢熱進行氫氣重組生產，實現能源循環利用，提升系統整體效率。對於綠色能源技術的發展具有潛力。" },
+            // ... (Add more technologies from your PDF with enhanced descriptions)
+        ];
+
+        const patents = [
+            // 審查中尚未獲證之可授權專利項目 (表1)
+            { id: 'patent-001', name: "自動駕駛車輛通訊安全系統及方法", area: "智駕與資通", country: "中國大陸", type: "發明", date: "2024-05-03", number: "CN117978410A", status: "pending", description: "此專利提供一套自動駕駛車輛的通訊安全系統與方法，旨在防範網路攻擊，確保車輛間及車輛與基礎設施間通訊的完整性與機密性，提升自駕系統的整體安全性。對於車用聯盟在資安領域的佈局至關重要。" },
+            { id: 'patent-002', name: "磁導式轉轍系統及磁導式轉轍方法", area: "智駕與資通", country: "中國大陸", type: "發明", date: "2024-05-24", number: "CN118068826A", status: "pending", description: "本專利涉及一種磁導式轉轍系統，用於引導車輛在特定路徑上精確行駛，特別適用於自動導引車輛 (AGV) 或特定軌道運輸系統，提供高精度的路徑切換能力。在智慧物流、自動倉儲等場景應用廣泛。" },
+            { id: 'patent-003', name: "氫氣溫控系統、低溫儲貨裝置及低溫儲貨裝置的分區控溫方法", area: "新能源與機電整合", country: "中國大陸", type: "發明", date: "2024-08-16", number: "CN118507781A", status: "pending", description: "此專利針對氫氣儲存與運輸，提出一套先進的溫控系統與分區控溫方法，確保低溫儲氫裝置的穩定性與安全性，對於氫能物流及應用至關重要。有助於氫燃料電池車輛的商業化推動。" },
+            { id: 'patent-004', name: "電控煞車總泵", area: "新能源與機電整合", country: "中國大陸", type: "發明", date: "2024-06-28", number: "CN118254918A", status: "pending", description: "本專利提供一種電控煞車總泵，實現煞車系統的電子化控制，提升煞車響應速度與精準性，為未來線控煞車系統的發展奠定基礎。對於電動車輛的煞車系統升級具有潛力。" },
+            { id: 'patent-005', name: "艙內偵測方法及其系統", area: "感知與定位", country: "美國", type: "發明", date: "2024-03-28", number: "US20240104943A1", status: "pending", description: "此專利涵蓋車輛艙內偵測技術，能有效監測駕駛人狀態、乘客行為及車內物品，提升行車安全與乘坐體驗，並為智慧座艙應用提供數據支持。在駕駛監控系統 (DMS) 和乘客監控系統 (OMS) 領域有廣泛應用。" },
+            { id: 'patent-006', name: "計算機視覺式車輛定位融合系統及方法", area: "感知與定位", country: "中國大陸", type: "發明", date: "2024-05-14", number: "CN118033704A", status: "pending", description: "本專利結合計算機視覺與多感測器融合技術，提供高精度、高魯棒性的車輛定位解決方案，即使在 GPS 訊號不佳的環境下也能保持精準定位。對於自動駕駛車輛的精準導航至關重要。" },
+            // ... (Add more pending patents from your PDF with enhanced descriptions)
+
+            // 已獲證之可授權專利項目 (表2)
+            { id: 'patent-007', name: "自適應車速控制方法及其自適應車速控制裝置", area: "智駕與資通", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利提供一套自適應巡航控制系統 (ACC)，能根據路況與駕駛行為自動調整車速，提升行車舒適性與安全性。是先進駕駛輔助系統 (ADAS) 的核心功能之一。" },
+            { id: 'patent-008', name: "虛擬道路邊界之輔助駕駛裝置", area: "智駕與資通", country: "TW/CN", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利設計一種輔助駕駛裝置，透過虛擬道路邊界技術，協助駕駛人維持車道，降低行車疲勞並提升安全。對於車道維持輔助系統 (LKA) 的發展具有潛力。" },
+            { id: 'patent-009', name: "行車即時防撞警示系統及其方法", area: "智駕與資通", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利提供即時防撞警示系統 (FCW)，能預測潛在碰撞風險並及時提醒駕駛人，有效避免事故發生。提升車輛主動安全性能。" },
+            { id: 'patent-010', name: "電動車熱管理系統", area: "新能源與機電整合", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利針對電動車設計一套高效熱管理系統，優化電池、馬達及電控單元的散熱與溫度控制，提升續航里程與電池壽命。對於電動車輛的性能與可靠性有顯著提升。" },
+            { id: 'patent-011', name: "動能回充控制器、動能回充控制系統及其控制方法", area: "新能源與機電整合", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利開發一套動能回充控制技術，能最大化煞車時的能量回收效率，進一步提升電動車的能源利用率。有助於提升電動車的續航里程與節能表現。" },
+            { id: 'patent-012', name: "電池健康狀態估測裝置及方法", area: "新能源與機電整合", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利提供精準的電池健康狀態 (SOH) 估測技術，幫助使用者了解電池性能衰退情況，延長電池組使用壽命。對於電動車電池管理系統 (BMS) 至關重要。" },
+            { id: 'patent-013', name: "車輛頭燈自適應避光方法", area: "感知與定位", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利實現車輛頭燈的自適應避光功能，避免眩光影響對向來車，提升夜間行車安全。應用於智慧車燈系統，提升夜間駕駛體驗。" },
+            { id: 'patent-014', name: "車輛定位方法及其系統", area: "感知與定位", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利提供多種車輛定位方法與系統，結合不同感測器數據，實現高精度、高可靠性的車輛定位。對於自動駕駛與高精地圖應用具有重要價值。" },
+            { id: 'patent-015', name: "駕駛者狀態監控器測試方法及其測試系統", area: "感知與定位", country: "TW/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利開發駕駛者狀態監控系統 (DMS) 的測試方法，確保系統能有效偵測駕駛疲勞或分心，提升行車安全。是智慧座艙與主動安全的重要組成部分。" },
+            { id: 'patent-016', name: "濾煙器主動再生方法", area: "環保節能", country: "TW/CN/US/TH", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利提供柴油車濾煙器 (DPF) 的主動再生技術，有效清除微粒，降低排放污染，延長 DPF 使用壽命。對於柴油車的環保合規性具有重要意義。" },
+            { id: 'patent-017', name: "直覺式節能駕駛輔助方法與系統", area: "環保節能", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利開發一套直覺式節能駕駛輔助系統，透過即時回饋引導駕駛人採取更節能的駕駛行為，降低油耗與排放。有助於提升車輛的燃油經濟性。" },
+            // ... (Add more patents from your PDF with enhanced descriptions and status)
+        ];
+
+        const techContainer = document.getElementById('technology-cards-container');
+        const patentContainer = document.getElementById('patent-cards-container');
+        const techSearchInput = document.getElementById('tech-search');
+        const patentSearchInput = document.getElementById('patent-search');
+        const techNoResults = document.getElementById('no-tech-results');
+        const patentNoResults = document.getElementById('no-patent-results');
+
+        let currentTechFilter = 'all';
+        let currentPatentCategoryFilter = 'all'; // For patent area filter
+        let currentPatentStatusFilter = 'all';   // For patent status filter
+        let filteredPatentsForModal = []; // Store currently filtered patents for modal navigation
+        let currentPatentIndex = 0; // Track current patent in modal
+
+        // Function to open modal
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+        }
+
+        // Function to close modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Function to display patent details in the modal
+        function displayPatentInModal(patent) {
+            document.getElementById('patentDetailModalTitle').textContent = patent.name;
+            document.getElementById('patentDetailModalArea').textContent = patent.area;
+            document.getElementById('patentDetailModalStatus').textContent = patent.status === 'pending' ? '審查中' : '已獲證';
+            document.getElementById('patentDetailModalCountry').textContent = patent.country;
+            document.getElementById('patentDetailModalType').textContent = patent.type;
+            document.getElementById('patentDetailModalDate').textContent = patent.date;
+            document.getElementById('patentDetailModalNumber').textContent = patent.number;
+            document.getElementById('patentDetailModalDescription').textContent = patent.description;
+
+            // Update navigation button states
+            document.getElementById('prevPatentBtn').disabled = currentPatentIndex === 0;
+            document.getElementById('nextPatentBtn').disabled = currentPatentIndex === filteredPatentsForModal.length - 1;
+
+            openModal('patentDetailModal');
+        }
+
+        // Function to navigate patents in the modal
+        function navigatePatent(direction) {
+            currentPatentIndex += direction;
+            if (currentPatentIndex < 0) {
+                currentPatentIndex = 0;
+            } else if (currentPatentIndex >= filteredPatentsForModal.length) {
+                currentPatentIndex = filteredPatentsForModal.length - 1;
+            }
+            displayPatentInModal(filteredPatentsForModal[currentPatentIndex]);
+        }
+
+        // Render Technology Cards
+        function renderTechnologyCards(filter = 'all', searchTerm = '') {
+            techContainer.innerHTML = '';
+            let filteredTechnologies = technologies.filter(tech => {
+                const matchesCategory = (filter === 'all' || tech.category === filter);
+                const matchesSearch = tech.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                      tech.description.toLowerCase().includes(searchTerm.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filteredTechnologies.length === 0) {
+                techNoResults.classList.remove('hidden');
+            } else {
+                techNoResults.classList.add('hidden');
+            }
+
+            filteredTechnologies.forEach(tech => {
+                const card = document.createElement('div');
+                card.className = 'bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 flex flex-col justify-between';
+                card.innerHTML = `
+                    <div class="card-checkbox-container">
+                        <label for="tech-checkbox-${tech.id}">選擇</label>
+                        <input type="checkbox" id="tech-checkbox-${tech.id}" name="interest-item" value="技術: ${tech.name}" onchange="updateInterestSummary()">
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold text-gray-900 mb-2">${tech.name}</h4>
+                        <p class="text-gray-600 text-sm mb-1"><strong>公告年度:</strong> ${tech.year}</p>
+                        <p class="text-gray-600 text-sm mb-4"><strong>技術類別:</strong> ${tech.category}</p>
+                        <p class="text-gray-700 text-base tech-description">${tech.description}</p>
+                    </div>
+                `;
+                techContainer.appendChild(card);
+            });
+            // After rendering, ensure checkboxes reflect current summary state
+            updateCheckboxesFromSummary();
+        }
+
+        // Render Patent Cards
+        function renderPatentCards(categoryFilter = 'all', statusFilter = 'all', searchTerm = '') {
+            patentContainer.innerHTML = '';
+            filteredPatentsForModal = patents.filter(patent => { // Update the global filtered list for modal
+                const matchesCategory = (categoryFilter === 'all' || patent.area === categoryFilter);
+                const matchesStatus = (statusFilter === 'all' || patent.status === statusFilter);
+                const matchesSearch = patent.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                      patent.description.toLowerCase().includes(searchTerm.toLowerCase());
+                return matchesCategory && matchesStatus && matchesSearch;
+            });
+
+            if (filteredPatentsForModal.length === 0) {
+                patentNoResults.classList.remove('hidden');
+            } else {
+                patentNoResults.classList.add('hidden');
+            }
+
+            filteredPatentsForModal.forEach((patent, index) => {
+                const card = document.createElement('div');
+                card.className = 'bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 flex flex-col justify-between';
+                card.innerHTML = `
+                    <div class="card-checkbox-container">
+                        <label for="patent-checkbox-${patent.id}">選擇</label>
+                        <input type="checkbox" id="patent-checkbox-${patent.id}" name="interest-item" value="專利: ${patent.name} (${patent.status === 'pending' ? '審查中' : '已獲證'})" onchange="updateInterestSummary()">
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold text-gray-900 mb-2">${patent.name}</h4>
+                        <p class="text-gray-600 text-sm mb-1"><strong>領域別:</strong> ${patent.area}</p>
+                        <p class="text-gray-600 text-sm mb-4"><strong>狀態:</strong> ${patent.status === 'pending' ? '審查中' : '已獲證'}</p>
+                    </div>
+                    <button class="mt-4 bg-blue-600 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-700 transition-colors duration-200 shadow-md self-start" onclick="openPatentDetail(${index})">
+                        查看詳情
+                    </button>
+                `;
+                patentContainer.appendChild(card);
+            });
+            // After rendering, ensure checkboxes reflect current summary state
+            updateCheckboxesFromSummary();
+        }
+
+        // Function to open patent detail modal from card
+        function openPatentDetail(index) {
+            currentPatentIndex = index;
+            displayPatentInModal(filteredPatentsForModal[currentPatentIndex]);
+        }
+
+        // Update the "合作意向簡述" textarea based on selected checkboxes
+        function updateInterestSummary() {
+            const messageTextarea = document.getElementById('message');
+            const selectedItems = [];
+
+            // Get selected technologies and patents from the main display sections
+            document.querySelectorAll('input[name="interest-item"]:checked').forEach(checkbox => {
+                selectedItems.push(checkbox.value);
+            });
+
+            // Handle "No interest" checkbox
+            const noInterestCheckbox = document.getElementById('no-interest-checkbox');
+            if (noInterestCheckbox.checked) {
+                if (selectedItems.length === 0) {
+                    messageTextarea.value = "以上資料我都沒有興趣，我的需求是：";
+                } else {
+                    // If "no interest" is checked along with other items, it implies specific interests + general disinterest in others
+                    messageTextarea.value = `我對以下項目感興趣：\n- ${selectedItems.join('\n- ')}\n\n同時，對於其他未勾選的資料，我目前沒有興趣。我的主要需求是：`;
+                }
+            } else if (selectedItems.length > 0) {
+                messageTextarea.value = `我對以下項目感興趣：\n- ${selectedItems.join('\n- ')}\n\n我的合作意向是：`;
+            } else {
+                messageTextarea.value = ""; // Clear if nothing is selected
+            }
+        }
+
+        // Function to update the state of checkboxes based on the summary textarea
+        // This is important when filters change, to re-check previously selected items
+        function updateCheckboxesFromSummary() {
+            const messageTextarea = document.getElementById('message');
+            const currentSummary = messageTextarea.value;
+
+            document.querySelectorAll('input[name="interest-item"]').forEach(checkbox => {
+                if (currentSummary.includes(checkbox.value)) {
+                    checkbox.checked = true;
+                } else {
+                    checkbox.checked = false;
+                }
+            });
+            // Handle "no interest" checkbox state
+            document.getElementById('no-interest-checkbox').checked = currentSummary.includes("以上資料我都沒有興趣");
+        }
+
+
+        // Initialize rendering on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTechnologyCards();
+            renderPatentCards();
+            
+            // Add event listeners to filters and search inputs
+            document.querySelectorAll('.filter-button').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const filterType = event.target.dataset.filterType;
+                    const filterValue = event.target.dataset.filterValue;
+
+                    document.querySelectorAll(`.filter-button[data-filter-type="${filterType}"]`).forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    event.target.classList.add('active');
+
+                    if (filterType === 'tech') {
+                        currentTechFilter = filterValue;
+                        renderTechnologyCards(currentTechFilter, techSearchInput.value);
+                    } else if (filterType === 'patent-category') {
+                        currentPatentCategoryFilter = filterValue;
+                        renderPatentCards(currentPatentCategoryFilter, currentPatentStatusFilter, patentSearchInput.value);
+                    } else if (filterType === 'patent-status') {
+                        currentPatentStatusFilter = filterValue;
+                        renderPatentCards(currentPatentCategoryFilter, currentPatentStatusFilter, patentSearchInput.value);
+                    }
+                });
+            });
+
+            techSearchInput.addEventListener('input', (event) => {
+                renderTechnologyCards(currentTechFilter, event.target.value);
+            });
+
+            patentSearchInput.addEventListener('input', (event) => {
+                renderPatentCards(currentPatentCategoryFilter, currentPatentStatusFilter, event.target.value);
+            });
+
+            // Contact Form Submission
+            document.getElementById('contact-form').addEventListener('submit', async function(event) {
+                event.preventDefault();
+                const formMessage = document.getElementById('form-message');
+                const submitButton = this.querySelector('button[type="submit"]');
+                const loadingIndicator = document.getElementById('submit-loading');
+
+                // Show loading state
+                submitButton.disabled = true;
+                loadingIndicator.style.display = 'inline-block';
+                formMessage.classList.add('hidden'); // Hide previous messages
+
+                try {
+                    // Ensure Firebase is initialized and authenticated
+                    if (!window.db || !window.auth || !window.auth.currentUser) {
+                        formMessage.textContent = '系統錯誤：Firebase 未初始化或未認證。請稍後再試。';
+                        formMessage.classList.remove('hidden');
+                        formMessage.classList.add('text-red-300');
+                        console.error("Firebase not ready for submission.");
+                        return;
+                    }
+
+                    // Collect selected individual items (techs and patents)
+                    const selectedItems = Array.from(document.querySelectorAll('input[name="interest-item"]:checked'))
+                                                .map(checkbox => checkbox.value);
+                    
+                    const noInterestChecked = document.getElementById('no-interest-checkbox').checked;
+
+                    const formData = {
+                        companyName: this['company-name'].value,
+                        contactPerson: this['contact-person'].value,
+                        email: this.email.value,
+                        phone: this.phone.value,
+                        selectedSpecificItems: selectedItems,
+                        noInterestOption: noInterestChecked,
+                        message: this.message.value,
+                        timestamp: new Date().toISOString() // Add a timestamp
+                    };
+
+                    // Store data in Firestore
+                    // Collection path: /artifacts/{appId}/public/data/formSubmissions
+                    const submissionsCollectionRef = window.collection(window.db, `artifacts/${window.appId}/public/data/formSubmissions`);
+                    await window.addDoc(submissionsCollectionRef, formData);
+
+                    formMessage.textContent = '您的訊息已成功提交，我們將盡快與您聯繫！';
+                    formMessage.classList.remove('hidden');
+                    formMessage.classList.remove('text-red-300');
+                    formMessage.classList.add('text-green-300');
+                    this.reset(); // Clear the form
+                    // Uncheck all checkboxes after reset
+                    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
+                    updateInterestSummary(); // Clear the summary text
+                    
+                } catch (error) {
+                    console.error("Error submitting form data to Firestore:", error);
+                    formMessage.textContent = '提交失敗，請檢查網路連線或稍後再試。';
+                    formMessage.classList.remove('hidden');
+                    formMessage.classList.remove('text-green-300');
+                    formMessage.classList.add('text-red-300');
+                } finally {
+                    // Hide loading state
+                    submitButton.disabled = false;
+                    loadingIndicator.style.display = 'none';
+                    setTimeout(() => {
+                        formMessage.classList.add('hidden');
+                    }, 5000);
+                }
+            });
+        });
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                closeModal(event.target.id);
+            }
+        }
+    </script>
+</body>
+</html>
