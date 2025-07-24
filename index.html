@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NiEA 車用聯盟 x ARTC | 商機媒合平台</title>
+    <title>NiEA 車用零組件聯盟 x ARTC | 商機媒合平台</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -209,7 +209,7 @@
         <div class="flex items-center">
             <!-- NiEA Logo Placeholder -->
             <img src="https://placehold.co/60x60/4CAF50/FFFFFF?text=NiEA" alt="NiEA Logo" class="h-12 w-12 rounded-full mr-3 shadow-md">
-            <h1 class="text-2xl font-bold text-gray-800">NiEA 車用聯盟</h1>
+            <h1 class="text-2xl font-bold text-gray-800">NiEA 車用零組件聯盟</h1>
         </div>
         <nav class="hidden md:flex space-x-6">
             <a href="#hero" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">首頁</a>
@@ -230,10 +230,10 @@
             <div class="absolute inset-0 bg-cover bg-center opacity-30 rounded-b-3xl" style="background-image: url('https://placehold.co/1920x1080/28a745/FFFFFF?text=NiEA+ARTC+Collaboration');"></div>
             <div class="relative z-10 text-center max-w-4xl">
                 <h2 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-down">
-                    NiEA 車用聯盟 x ARTC 參訪活動：<br>探索未來車輛合作機會
+                    NiEA 車用零組件聯盟 x ARTC 參訪活動：<br>探索未來車輛合作機會
                 </h2>
                 <p class="text-lg md:text-xl mb-10 opacity-90 animate-fade-in-up">
-                    本次活動旨在為 NiEA 車用聯盟的成員與 ARTC 搭建商機媒合橋樑，共同探索智慧、綠能、安全移動的創新技術與合作潛力。
+                    本次活動旨在為 NiEA 車用零組件聯盟的成員與 ARTC 搭建商機媒合橋樑，共同探索智慧、綠能、安全移動的創新技術與合作潛力。
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
                     <a href="#technologies" class="bg-white text-green-700 hover:bg-green-100 px-8 py-4 rounded-full text-lg font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
@@ -345,8 +345,6 @@
                             </p>
                         </div>
                     </div>
-                    <!-- Placeholder for Elderly Driver Challenges Image -->
-                    <img src="https://placehold.co/600x300/FFCC00/000000?text=高齡駕駛挑戰示意圖%0A(反應遲緩%2C+視聽覺退化)" alt="高齡駕駛挑戰示意圖" class="w-full h-auto rounded-lg mt-6 shadow-md">
                 </div>
 
                 <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
@@ -405,8 +403,6 @@
                         </div>
                     </div>
 
-                    <!-- Placeholder for Business Opportunities Image -->
-                    <img src="https://placehold.co/600x300/ADD8E6/000000?text=高齡駕駛商機示意圖%0A(安全%2C+獨立%2C+科技)" alt="高齡駕駛商機示意圖" class="w-full h-auto rounded-lg mt-6 shadow-md">
                     <p class="text-gray-700 mt-4">
                         ARTC 相關技術：我們的「自駕車最小風險技術」、「主動安全系統」、「車電功能安全與資安設計驗證技術」、「AI環景影像定位技術」、「L3 車輛駕駛接管偵測系統」等，皆可為這些商機提供核心技術支援。
                     </p>
@@ -560,9 +556,8 @@
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-gray-300 py-8 px-6 text-center rounded-t-lg">
-        <p>&copy; 2025 NiEA 車用聯盟. All rights reserved.</p>
+        <p>&copy; 2025 NiEA 車用零組件聯盟. All rights reserved.</p>
         <p class="mt-2 text-sm">技術合作夥伴：ARTC 車輛中心</p>
-        <p class="mt-1 text-sm">主辦單位：DOIT 經濟部產業技術司 88 經濟部能源署</p>
     </footer>
 
     <!-- Patent Detail Modal -->
@@ -575,7 +570,7 @@
                 <p><strong class="text-gray-900">狀態：</strong> <span id="patentDetailModalStatus"></span></p>
                 <p><strong class="text-gray-900">國別：</strong> <span id="patentDetailModalCountry"></span></p>
                 <p><strong class="text-gray-900">類別：</strong> <span id="patentDetailModalType"></span></p>
-                <p><strong class="text-gray-900">公開日：：</strong> <span id="patentDetailModalDate"></span></p>
+                <p><strong class="text-gray-900">公開日：</strong> <span id="patentDetailModalDate"></span></p>
                 <p><strong class="text-gray-900">公開號：</strong> <span id="patentDetailModalNumber"></span></p>
                 <p><strong class="text-gray-900">專利簡述：</strong> <span id="patentDetailModalDescription"></span></p>
                 <p class="mt-4 text-gray-600">如需進一步了解，請參考聯絡我們區塊的資訊。</p>
@@ -592,76 +587,405 @@
         // Assign unique IDs to technologies and patents
         const technologies = [
             // 114年業界合作計畫項目
-            { id: 'tech-001', name: "車輛資安防護智慧域控制器技術", year: "2025", category: "智駕與資通", description: "此技術提供先進的車輛資安防護解決方案，確保車載系統與通訊安全，抵禦網路威脅。特別適用於車用聯盟在智慧網聯汽車領域的資安佈局。" },
-            { id: 'tech-002', name: "聯網自動駕駛技術", year: "2025", category: "智駕與資通", description: "整合車輛聯網功能，實現更安全、更高效的自動駕駛體驗，提升道路協同能力。是車用聯盟推動自動駕駛商用化的關鍵技術。" },
+            { id: 'tech-001', name: "車輛資安防護智慧域控制器技術", year: "2025", category: "智駕與資通", description: "此技術提供先進的車輛資安防護解決方案，確保車載系統與通訊安全，抵禦網路威脅。特別適用於車用零組件聯盟在智慧網聯汽車領域的資安佈局。" },
+            { id: 'tech-002', name: "聯網自動駕駛技術", year: "2025", category: "智駕與資通", description: "整合車輛聯網功能，實現更安全、更高效的自動駕駛體驗，提升道路協同能力。是車用零組件聯盟推動自動駕駛商用化的關鍵技術。" },
             { id: 'tech-003', name: "電動液壓煞車控制技術", year: "2025", category: "新能源與機電整合", description: "優化電動車輛的煞車性能，提供精確的煞車控制與能量回收效率。對於電動車輛的性能提升與能源管理具有重要意義。" },
-            { id: 'tech-004', name: "氫能載具熱管理系統匹配設計技術", year: "2025", category: "新能源與機電整合", description: "針對氫燃料電池車輛，提供高效的熱管理系統設計與匹配方案，確保系統穩定運行。有助於車用聯盟在氫能車輛領域的技術發展。" },
+            { id: 'tech-004', name: "氫能載具熱管理系統匹配設計技術", year: "2025", category: "新能源與機電整合", description: "針對氫燃料電池車輛，提供高效的熱管理系統設計與匹配方案，確保系統穩定運行。有助於車用零組件聯盟在氫能車輛領域的技術發展。" },
 
-            // 歷年研發成果可移轉技術項目 (部分選取，已增加關鍵字以利搜尋)
-            { id: 'tech-005', name: "具資安防護之OTA車輛軟體更新技術", year: "2024", category: "智駕與資通", description: "提供安全的空中下載 (OTA) 軟體更新方案，確保車輛系統的即時更新與資安防護。對於車用軟體定義汽車及資安合規性至關重要。" },
-            { id: 'tech-006', name: "自駕車最小風險技術", year: "2024", category: "智駕與資通", description: "開發自駕車在緊急情況下的最小風險策略，提升行車安全與應變能力。是自動駕駛系統安全驗證的核心環節。" },
-            { id: 'tech-007', name: "主動安全系統(自動車道變換)", year: "2024", category: "智駕與資通", description: "實現車輛自動安全變換車道功能，提升駕駛輔助系統的智慧化水平。有助於提升行車舒適性與安全性。" },
-            { id: 'tech-008', name: "虛擬軌道自駕技術", year: "2023", category: "智駕與資通", description: "透過虛擬軌道規劃，實現車輛在特定場景下的精準自動駕駛與路徑追蹤。適用於物流車隊、園區自駕等應用。" },
-            { id: 'tech-009', name: "自駕隊列路口決策技術", year: "2023", category: "智駕與資通", description: "優化自駕車隊在複雜路口環境下的決策能力，提升通行效率與安全性。對於智慧交通系統的發展具有關鍵作用。" },
-            { id: 'tech-010', name: "車電功能安全與資安設計驗證技術", year: "2023", category: "智駕與資通", description: "提供車輛電子系統的功能安全與資安設計驗證服務，確保產品符合國際標準。是車用電子產品開發的重要保障。" },
-            { id: 'tech-011', name: "AI環景影像定位技術", year: "2024", category: "感知與定位", description: "結合 AI 影像處理與環景感知，實現車輛高精度定位與環境理解。適用於自動駕駛、停車輔助等場景。" },
-            { id: 'tech-012', name: "L3 車輛駕駛接管偵測系統", year: "2024", category: "感知與定位", description: "針對 Level 3 自動駕駛，開發駕駛人接管狀態的精準偵測系統，確保安全過渡。是實現高階自動駕駛的關鍵安全機制。" },
-            { id: 'tech-013', name: "車輛環周異質感知融合偵測及追蹤技術", year: "2024", category: "感知與定位", description: "整合多種異質感測器數據（如雷達、光達、攝影機），實現車輛周圍環境的全面偵測與目標追蹤。提升自動駕駛系統的環境感知能力。" },
-            { id: 'tech-014', name: "電動車多合一馬達驅控器可靠度模擬分析技術", year: "2023", category: "電腦輔助工程設計與分析", description: "利用 CAE 模擬分析，評估電動車馬達驅控器的可靠度與性能，優化設計。有助於加速電動車動力系統的開發與驗證。" },
-            { id: 'tech-015', name: "氫洩漏模擬分析與通風設計技術", year: "2024", category: "電腦輔助工程設計與分析", description: "針對氫能車輛，提供氫氣洩漏模擬與通風系統的優化設計，確保安全。是氫能車輛安全設計的重要環節。" },
-            { id: 'tech-016', name: "EV多合一系統結構強度與耐候驗證技術", year: "2024", category: "檢測與驗證技術", description: "對電動車多合一系統進行結構強度與耐候性驗證，確保其在嚴苛環境下的可靠性。保障電動車輛長期運行的穩定性。" },
-            { id: 'tech-017', name: "自動緊急煞車性能評估", year: "2024", category: "檢測與驗證技術", description: "提供自動緊急煞車系統 (AEB) 的性能評估與驗證服務，符合法規要求。是車輛安全認證的必要環節。" },
-            { id: 'tech-018', name: "富氫氣體輔助內燃機引擎燃燒之控制系統", year: "2019", category: "環保節能", description: "透過富氫氣體輔助，優化內燃機引擎燃燒效率，降低排放並提升節能效果。有助於傳統燃油車輛的節能減排。" },
-            { id: 'tech-019', name: "廢熱重組產氫裝置", year: "2019", category: "環保節能", description: "利用廢熱進行氫氣重組生產，實現能源循環利用，提升系統整體效率。對於綠色能源技術的發展具有潛力。" },
-            // Add more technologies from PDF for comprehensive data representation
-            { id: 'tech-020', name: "自駕隊列控制技術", year: "2022", category: "智駕與資通", description: "實現多輛自駕車輛的協同控制，提升車隊行駛效率與安全性。" },
-            { id: 'tech-021', name: "主動安全系統", year: "2022", category: "智駕與資通", description: "整合多項主動安全功能，提供全方位的駕駛輔助與事故預防。" },
-            { id: 'tech-022', name: "自動化車輛進出站軌跡規劃技術", year: "2021", category: "智駕與資通", description: "針對自動駕駛車輛，提供精確的進出站軌跡規劃與控制方案。" },
-            { id: 'tech-023', name: "電動輔助轉向系統模擬驗證平台", year: "2018", category: "新能源與機電整合", description: "提供電動輔助轉向系統 (EPS) 的模擬與驗證環境，加速開發與測試。" },
-            { id: 'tech-024', name: "車道跟隨系統", year: "2017", category: "新能源與機電整合", description: "實現車輛在車道內的自動跟隨功能，提升駕駛舒適性。" },
-            { id: 'tech-025', name: "多電力源最佳化電力調配技術", year: "2017", category: "新能源與機電整合", description: "優化多種電力來源的分配與管理，提升電動車輛的能源效率。" },
-            { id: 'tech-026', name: "車輛動態定位技術", year: "2018", category: "感知與定位", description: "實現車輛在動態行駛過程中的高精度定位，為自動駕駛提供基礎。" },
-            { id: 'tech-027', name: "智慧化屏幕資訊整合顯示系統", year: "2014", category: "感知與定位", description: "整合多源資訊於車載屏幕，提供清晰直觀的駕駛資訊顯示。" },
-            { id: 'tech-028', name: "車輛底盤CAE分析技術", year: "2010", category: "電腦輔助工程設計與分析", description: "利用電腦輔助工程分析，優化車輛底盤結構設計與性能。" },
-            { id: 'tech-029', name: "行人碰撞安全防護CAE分析與改良技術", year: "2007", category: "電腦輔助工程設計與分析", description: "透過CAE模擬分析，提升車輛對行人的碰撞安全防護性能。" },
-            { id: 'tech-030', name: "整車電磁相容性(EMC)研測技術", year: "2012", category: "檢測與驗證技術", description: "提供整車級別的電磁相容性測試與驗證服務，確保車輛電子系統穩定運行。" },
-            { id: 'tech-031', name: "柴油碳微粒過濾器(DPF)自動再生控制技術", year: "2015", category: "檢測與驗證技術", description: "開發DPF自動再生控制技術，有效清除柴油引擎排放的碳微粒，符合環保法規。" },
-            { id: 'tech-032', name: "車輛排放監測系統及方法", year: "2016", category: "環保節能", description: "提供車輛排放的即時監測系統與方法，有助於環保法規的遵循與排放管理。" },
-            { id: 'tech-033', name: "直覺式節能駕駛輔助方法與系統", year: "2015", category: "環保節能", description: "透過直觀的介面與回饋，引導駕駛人採取更節能的駕駛行為，降低油耗。" }
+            // 歷年研發成果可移轉技術項目 (完整匯入)
+            // 2024
+            { id: 'tech-005', name: "具資安防護之OTA車輛軟體更新技術", year: "2024", category: "智駕與資通", description: "提供安全的空中下載 (OTA) 軟體更新方案，確保車輛系統的即時更新與資安防護。對於軟體定義汽車及資安合規性至關重要。" },
+            { id: 'tech-006', name: "自駕車最小風險技術", year: "2024", category: "智駕與資通", description: "開發自駕車在緊急情況下的最小風險策略，提升行車安全與應變能力，是自動駕駛系統安全驗證的核心環節。" },
+            { id: 'tech-007', name: "主動安全系統(自動車道變換)", year: "2024", category: "智駕與資通", description: "實現車輛自動安全變換車道功能，提升駕駛輔助系統的智慧化水平，有助於提升行車舒適性與安全性。" },
+            { id: 'tech-008', name: "電動液壓煞車系統(EHB)之電控模組(ECU)", year: "2024", category: "新能源與機電整合", description: "提供電動液壓煞車系統的電子控制單元模組，實現精確的煞車性能控制。" },
+            { id: 'tech-009', name: "燃料電池冷鏈系統廢熱應用技術", year: "2024", category: "新能源與機電整合", description: "利用燃料電池系統的廢熱進行冷鏈應用，提升能源利用效率，實現綠色節能。" },
+            { id: 'tech-010', name: "AI環景影像定位技術", year: "2024", category: "感知與定位", description: "結合AI影像處理與環景感知，實現車輛高精度定位與環境理解，適用於自動駕駛、停車輔助等場景。" },
+            { id: 'tech-011', name: "L3 車輛駕駛接管偵測系統", year: "2024", category: "感知與定位", description: "針對Level 3自動駕駛，開發駕駛人接管狀態的精準偵測系統，確保安全過渡，是實現高階自動駕駛的關鍵安全機制。" },
+            { id: 'tech-012', name: "車輛環周異質感知融合偵測及追蹤技術", year: "2024", category: "感知與定位", description: "整合多種異質感測器數據（如雷達、光達、攝影機），實現車輛周圍環境的全面偵測與目標追蹤，提升自動駕駛系統的環境感知能力。" },
+            { id: 'tech-013', name: "氫洩漏模擬分析與通風設計技術", year: "2024", category: "電腦輔助工程設計與分析", description: "針對氫能車輛，提供氫氣洩漏模擬與通風系統的優化設計，確保安全，是氫能車輛安全設計的重要環節。" },
+            { id: 'tech-014', name: "EV多合一系統結構強度與耐候驗證技術", year: "2024", category: "檢測與驗證技術", description: "對電動車多合一系統進行結構強度與耐候性驗證，確保其在嚴苛環境下的可靠性，保障電動車輛長期運行的穩定性。" },
+            { id: 'tech-015', name: "智駕車輛偵測移動目標物驗證技術", year: "2024", category: "檢測與驗證技術", description: "提供智駕車輛對移動目標物偵測功能的驗證技術，確保自動駕駛系統的感知準確性與可靠性。" },
+            { id: 'tech-016', name: "自動緊急煞車性能評估", year: "2024", category: "檢測與驗證技術", description: "提供自動緊急煞車系統 (AEB) 的性能評估與驗證服務，符合法規要求，是車輛安全認證的必要環節。" },
+            
+            // 2023
+            { id: 'tech-017', name: "虛擬軌道自駕技術", year: "2023", category: "智駕與資通", description: "透過虛擬軌道規劃，實現車輛在特定場景下的精準自動駕駛與路徑追蹤，適用於物流車隊、園區自駕等應用。" },
+            { id: 'tech-018', name: "自駕隊列路口決策技術", year: "2023", category: "智駕與資通", description: "優化自駕車隊在複雜路口環境下的決策能力，提升通行效率與安全性，對於智慧交通系統的發展具有關鍵作用。" },
+            { id: 'tech-019', name: "主動安全系統(車道變換)", year: "2023", category: "智駕與資通", description: "提供車輛在車道變換時的主動安全輔助，降低事故風險，提升駕駛安全性。" },
+            { id: 'tech-020', name: "車電功能安全與資安設計驗證技術", year: "2023", category: "智駕與資通", description: "提供車輛電子系統的功能安全與資安設計驗證服務，確保產品符合國際標準，是車用電子產品開發的重要保障。" },
+            { id: 'tech-021', name: "電控液壓煞車系統(EHB)之電控模組(ECU)", year: "2023", category: "新能源與機電整合", description: "提供電控液壓煞車系統的電子控制單元模組，實現精確的煞車性能控制。" },
+            { id: 'tech-022', name: "燃料電池冷鏈系統整合與電力控制技術", year: "2023", category: "新能源與機電整合", description: "整合燃料電池與冷鏈系統，並提供電力控制技術，實現高效節能的冷鏈運輸方案。" },
+            { id: 'tech-023', name: "燃料電池車輛電力調節技術", year: "2023", category: "新能源與機電整合", description: "針對燃料電池車輛，提供高效的電力調節技術，確保電力輸出穩定與效率最佳化。" },
+            { id: 'tech-024', name: "車電系統預期功能安全驗證技術", year: "2023", category: "新能源與機電整合", description: "提供車輛電子系統預期功能安全 (SOTIF) 的驗證技術，確保系統在預期使用場景下的安全行為。" },
+            { id: 'tech-025', name: "車道維持輔助系統測試驗證技術", year: "2023", category: "新能源與機電整合", description: "提供車道維持輔助系統 (LKA) 的測試與驗證服務，確保其功能符合設計要求與安全標準。" },
+            { id: 'tech-026', name: "異質感測融合偵測技術", year: "2023", category: "感知與定位", description: "整合不同類型感測器（如雷達、光達、攝影機）的數據，實現更精準、更可靠的環境偵測。" },
+            { id: 'tech-027', name: "視覺式定位系統", year: "2023", category: "感知與定位", description: "透過視覺感測器實現車輛的精確定位，適用於GPS訊號不佳或無訊號的環境。" },
+            { id: 'tech-028', name: "L3 駕駛監控系統", year: "2023", category: "感知與定位", description: "針對Level 3自動駕駛，提供駕駛人監控系統，確保駕駛人狀態符合接管要求，提升行車安全。" },
+            { id: 'tech-029', name: "電動車多合一馬達驅控器可靠度模擬分析技術", year: "2023", category: "電腦輔助工程設計與分析", description: "利用CAE模擬分析，評估電動車多合一馬達驅控器的可靠度與性能，優化設計。" },
+            { id: 'tech-030', name: "氫能系統搭載結構設計優化技術", year: "2023", category: "電腦輔助工程設計與分析", description: "針對氫能系統的搭載，提供結構設計優化技術，確保系統的安全性與空間利用效率。" },
+            { id: 'tech-031', name: "馬達驅控器用虛擬馬達負載產出技術", year: "2023", category: "檢測與驗證技術", description: "提供馬達驅控器測試所需的虛擬馬達負載模擬技術，加速測試驗證流程。" },
+            { id: 'tech-032', name: "高變率結露模擬驗證技術建立", year: "2023", category: "檢測與驗證技術", description: "建立高變率結露環境的模擬與驗證技術，確保車輛電子元件在嚴苛環境下的可靠性。" },
+            { id: 'tech-033', name: "車電系統嚴苛環境驗證技術", year: "2023", category: "檢測與驗證技術", description: "提供車輛電子系統在極端溫度、濕度、震動等嚴苛環境下的驗證服務，確保產品品質。" },
+            { id: 'tech-034', name: "高功率突波暫態測試驗證技術", year: "2023", category: "檢測與驗證技術", description: "提供高功率突波暫態的測試與驗證技術，確保車輛電子系統對電壓波動的耐受性。" },
+
+            // 2022
+            { id: 'tech-035', name: "自駕隊列控制技術", year: "2022", category: "智駕與資通", description: "實現多輛自駕車輛的協同控制，提升車隊行駛效率與安全性。" },
+            { id: 'tech-036', name: "主動安全系統", year: "2022", category: "智駕與資通", description: "整合多項主動安全功能，提供全方位的駕駛輔助與事故預防。" },
+            { id: 'tech-037', name: "自駕車縱向控制系統測試驗證技術", year: "2022", category: "智駕與資通", description: "提供自駕車縱向控制系統的測試與驗證服務，確保車輛加速、減速的精準性與平穩性。" },
+            { id: 'tech-038', name: "影像式虛擬軌道偵測自駕技術", year: "2022", category: "智駕與資通", description: "透過影像辨識技術偵測虛擬軌道，實現車輛在特定場景下的自動駕駛。" },
+            { id: 'tech-039', name: "磁導式虛擬軌道自駕技術", year: "2022", category: "智駕與資通", description: "利用磁導技術實現車輛在預設虛擬軌道上的自動駕駛，適用於園區、港口等特定場景。" },
+            { id: 'tech-040', name: "比例閥式之電控煞車控制技術", year: "2022", category: "新能源與機電整合", description: "提供基於比例閥的電控煞車控制技術，實現精細的煞車力道控制，提升煞車性能。" },
+            { id: 'tech-041', name: "多感知環境探勘模組", year: "2022", category: "感知與定位", description: "整合多種感測器數據，實現對車輛周圍環境的全面探勘與理解，提升自動駕駛的環境感知能力。" },
+            { id: 'tech-042', name: "視覺式位置識別系統", year: "2022", category: "感知與定位", description: "透過視覺感測器識別車輛位置，提供高精度的定位資訊，適用於無GPS訊號的環境。" },
+            { id: 'tech-043', name: "感測器模型建置與對應系統之驗證技術", year: "2022", category: "感知與定位", description: "提供感測器模型建置與其對應系統的驗證技術，確保感測器數據的準確性與可靠性。" },
+
+            // 2021
+            { id: 'tech-044', name: "先進駕駛輔助技術", year: "2021", category: "智駕與資通", description: "整合多項先進駕駛輔助功能，提升駕駛安全與舒適性。" },
+            { id: 'tech-045', name: "車道變換預測技術", year: "2021", category: "智駕與資通", description: "預測周圍車輛的車道變換行為，提供更安全的駕駛輔助與決策依據。" },
+            { id: 'tech-046', name: "資通訊技術", year: "2021", category: "智駕與資通", description: "提供車輛資通訊相關技術，實現車輛與外部環境的互聯互通。" },
+            { id: 'tech-047', name: "自動化車輛進出站軌跡規劃技術", year: "2021", category: "智駕與資通", description: "針對自動駕駛車輛，提供精確的進出站軌跡規劃與控制方案，提升自動化程度。" },
+            { id: 'tech-048', name: "自動化聯網車輛行車資訊紀錄與傳輸技術", year: "2021", category: "智駕與資通", description: "實現聯網車輛行車資訊的自動紀錄與傳輸，為車隊管理與數據分析提供支持。" },
+            { id: 'tech-049', name: "基於雲端之自駕決策技術", year: "2021", category: "智駕與資通", description: "利用雲端運算能力，提供自駕車輛的決策支援，實現更智慧、更安全的自動駕駛。" },
+            { id: 'tech-050', name: "智慧電動車輛系統整合與設計匹配技術", year: "2021", category: "新能源與機電整合", description: "提供智慧電動車輛的系統整合與設計匹配服務，確保各子系統協同工作，實現最佳性能。" },
+            { id: 'tech-051', name: "自動駕駛模擬與實車驗證技術", year: "2021", category: "新能源與機電整合", description: "提供自動駕駛系統的模擬與實車驗證服務，確保系統在不同場景下的可靠性與安全性。" },
+            { id: 'tech-052', name: "電控煞車控制技術", year: "2021", category: "新能源與機電整合", description: "提供電控煞車系統的控制技術，實現精準的煞車力道控制，提升煞車性能。" },
+            { id: 'tech-053', name: "充電及電能管理技術", year: "2021", category: "新能源與機電整合", description: "提供電動車輛的充電與電能管理技術，優化充電效率與電池壽命。" },
+
+            // 2020
+            { id: 'tech-054', name: "自動駕駛與電動車輛系統整合技術", year: "2020", category: "智駕與資通", description: "整合自動駕駛與電動車輛系統，實現兩大核心技術的協同發展與應用。" },
+            { id: 'tech-055', name: "盲區對位顯示模組", year: "2020", category: "智駕與資通", description: "提供車輛盲區的對位顯示模組，幫助駕駛人更清晰地了解周圍環境，提升行車安全。" },
+            { id: 'tech-056', name: "自動駕駛整合技術", year: "2020", category: "智駕與資通", description: "提供自動駕駛系統的整合技術，將各子系統（感知、決策、控制）有效整合，實現自動駕駛功能。" },
+            { id: 'tech-057', name: "隊列協控模組", year: "2020", category: "智駕與資通", description: "實現車輛隊列的協同控制，提升車隊行駛的穩定性與效率。" },
+            { id: 'tech-058', name: "學習駕駛行為之避障技術", year: "2020", category: "智駕與資通", description: "透過學習駕駛行為，開發更智慧、更人性化的避障技術，提升自動駕駛的安全性與舒適性。" },
+            { id: 'tech-059', name: "電控煞車系統實車性能調校", year: "2020", category: "新能源與機電整合", description: "提供電控煞車系統的實車性能調校服務，確保系統在實際車輛上的最佳表現。" },
+            { id: 'tech-060', name: "自駕車視覺化定位技術", year: "2020", category: "感知與定位", description: "透過視覺化方式呈現自駕車的定位資訊，幫助使用者直觀了解車輛位置與環境。" },
+            { id: 'tech-061', name: "定向收音技術", year: "2020", category: "感知與定位", description: "提供定向收音技術，精確捕捉特定方向的聲音信號，應用於車載語音助理或環境感知。" },
+            { id: 'tech-062', name: "車輛協同式定位技術", year: "2020", category: "感知與定位", description: "實現多輛車輛間的協同定位，提升定位精度與可靠性，適用於車聯網環境。" },
+            { id: 'tech-063', name: "基於影像的動態人流分析系統", year: "2020", category: "感知與定位", description: "透過影像分析技術，實現對動態人流的偵測與分析，應用於智慧交通管理或安全監控。" },
+            { id: 'tech-064', name: "行人姿態辨識技術", year: "2020", category: "感知與定位", description: "提供行人姿態辨識技術，識別行人行為狀態，為自動駕駛的決策提供重要依據。" },
+            { id: 'tech-065', name: "複合材料樹脂轉注(RTM)成型模擬分析技術", year: "2020", category: "電腦輔助工程設計與分析", description: "提供複合材料樹脂轉注成型過程的模擬分析技術，優化成型工藝，提升產品品質。" },
+            { id: 'tech-066', name: "產氫系統安全與效益驗證技術", year: "2020", category: "檢測與驗證技術", description: "提供產氫系統的安全與效益驗證服務，確保氫能生產與儲存的安全性與經濟性。" },
+
+            // 2019
+            { id: 'tech-067', name: "預測多障礙物之意圖技術", year: "2019", category: "智駕與資通", description: "預測多個障礙物的未來行為意圖，提升自動駕駛的預判能力與安全性。" },
+            { id: 'tech-068', name: "自駕車輛系統整合技術", year: "2019", category: "智駕與資通", description: "提供自駕車輛各子系統的整合技術，確保軟硬體協同工作，實現完整的自動駕駛功能。" },
+            { id: 'tech-069', name: "全速域壅塞輔助系統", year: "2019", category: "智駕與資通", description: "提供全速域範圍內的交通壅塞輔助，提升駕駛在擁堵路況下的舒適性與安全性。" },
+            { id: 'tech-070', name: "車輛運行監控技術", year: "2019", category: "智駕與資通", description: "提供車輛運行狀態的實時監控技術，適用於車隊管理、故障診斷等應用。" },
+            { id: 'tech-071', name: "電控剎車系統(EBS)電控模組(ECU)", year: "2019", category: "新能源與機電整合", description: "提供電控剎車系統的電子控制單元模組，實現精確的煞車性能控制。" },
+            { id: 'tech-072', name: "電控剎車助力器(i-booster)剎車系統控制技術", year: "2019", category: "新能源與機電整合", description: "提供電控剎車助力器的控制技術，提升煞車響應速度與踏板感。" },
+            { id: 'tech-073', name: "高精度車輛定位技術", year: "2019", category: "感知與定位", description: "提供高精度的車輛定位技術，結合多種感測器數據，實現厘米級定位精度。" },
+            { id: 'tech-074', name: "智慧定點裝置人流估測系統", year: "2019", category: "感知與定位", description: "透過智慧定點裝置，估測特定區域的人流數量與密度，應用於智慧城市管理。" },
+            { id: 'tech-075', name: "複合材料熱壓成型模擬分析技術", year: "2019", category: "電腦輔助工程設計與分析", description: "提供複合材料熱壓成型過程的模擬分析技術，優化成型工藝，提升產品品質。" },
+            { id: 'tech-076', name: "節能駕駛行為訓練模組", year: "2019", category: "檢測與驗證技術", description: "提供節能駕駛行為的訓練模組，幫助駕駛人養成更節能的駕駛習慣。" },
+            { id: 'tech-077', name: "富氫氣體輔助內燃機引擎燃燒之控制系統", year: "2019", category: "環保節能", description: "透過富氫氣體輔助，優化內燃機引擎燃燒效率，降低排放並提升節能效果。" },
+            { id: 'tech-078', name: "廢熱重組產氫裝置", year: "2019", category: "環保節能", description: "利用工業廢熱進行氫氣重組生產，實現能源循環利用，提升系統整體效率。" },
+
+            // 2018
+            { id: 'tech-079', name: "自動化聯網車輛行車資訊紀錄與傳輸技術", year: "2018", category: "智駕與資通", description: "實現聯網車輛行車資訊的自動紀錄與傳輸，為車隊管理與數據分析提供支持。" },
+            { id: 'tech-080', name: "自動駕駛整合系統", year: "2018", category: "智駕與資通", description: "提供自動駕駛系統的整合方案，將各子系統（感知、決策、控制）有效整合，實現自動駕駛功能。" },
+            { id: 'tech-081', name: "駕駛輔助系統整合", year: "2018", category: "智駕與資通", description: "整合多項駕駛輔助系統，提供更全面、協同的駕駛輔助功能，提升行車安全與舒適性。" },
+            { id: 'tech-082', name: "主動安全控制器設計技術", year: "2018", category: "新能源與機電整合", description: "提供主動安全系統控制器設計技術，實現對車輛主動安全功能的精確控制。" },
+            { id: 'tech-083', name: "車道維持系統", year: "2018", category: "新能源與機電整合", description: "實現車輛在車道內的自動維持功能，降低駕駛疲勞，提升行車安全。" },
+            { id: 'tech-084', name: "電動車 3.7kW 無線充電系統", year: "2018", category: "新能源與機電整合", description: "提供電動車3.7kW無線充電系統的技術，實現便捷、高效的充電方式。" },
+            { id: 'tech-085', name: "電控煞車系統(EBS)電子控制單元(ECU)", year: "2018", category: "新能源與機電整合", description: "提供電控煞車系統的電子控制單元模組，實現精確的煞車性能控制。" },
+            { id: 'tech-086', name: "電動輔助轉向系統模擬驗證平台", year: "2018", category: "新能源與機電整合", description: "提供電動輔助轉向系統 (EPS) 的模擬與驗證環境，加速開發與測試。" },
+            { id: 'tech-087', name: "車輛頭燈自適應調節系統", year: "2018", category: "感知與定位", description: "根據行車環境自動調整頭燈照射範圍和亮度，提升夜間行車視野和安全性。" },
+            { id: 'tech-088', name: "車輛動態定位技術", year: "2018", category: "感知與定位", description: "實現車輛在動態行駛過程中的高精度定位，為自動駕駛提供基礎。" },
+            { id: 'tech-089', name: "高碳燃料重組產氫技術", year: "2018", category: "檢測與驗證技術", description: "提供高碳燃料重組產氫技術，實現氫氣的生產與利用，推動氫能發展。" },
+
+            // 2017
+            { id: 'tech-090', name: "自動緊急人車低速防撞系統", year: "2017", category: "智駕與資通", description: "在低速行駛時，自動偵測前方人車並啟動防撞功能，避免或減輕事故。" },
+            { id: 'tech-091', name: "駕駛與車輛互動決策技術", year: "2017", category: "智駕與資通", description: "優化駕駛人與車輛系統之間的互動決策，提升人機協作的效率與安全性。" },
+            { id: 'tech-092', name: "主動定距巡航控制策略與整合技術", year: "2017", category: "智駕與資通", description: "提供主動定距巡航控制 (ACC) 的策略與整合技術，實現車輛自動跟車與車距保持。" },
+            { id: 'tech-093', name: "車用嵌入式網路管理平台", year: "2017", category: "智駕與資通", description: "提供車用嵌入式網路的管理平台，確保車載網路通訊的穩定與安全。" },
+            { id: 'tech-094', name: "無線通訊車載污染量測系統(4G-SEMS)", year: "2017", category: "智駕與資通", description: "利用4G無線通訊技術，實現車載污染物的即時量測與數據傳輸。" },
+            { id: 'tech-095', name: "車道跟隨系統", year: "2017", category: "新能源與機電整合", description: "實現車輛在車道內的自動跟隨功能，降低駕駛疲勞，提升駕駛舒適性。" },
+            { id: 'tech-096', name: "多電力源最佳化電力調配技術", year: "2017", category: "新能源與機電整合", description: "優化多種電力來源的分配與管理，提升電動車輛的能源效率與續航力。" },
+            { id: 'tech-097', name: "電動巴士節能動力輔助轉向系統", year: "2017", category: "新能源與機電整合", description: "為電動巴士提供節能的動力輔助轉向系統，降低能耗，提升操控性。" },
+            { id: 'tech-098', name: "氣壓煞車用電控繼動閥", year: "2017", category: "新能源與機電整合", description: "提供氣壓煞車系統的電控繼動閥技術，實現精確的氣壓控制與煞車響應。" },
+            { id: 'tech-099', name: "車輛定位技術", year: "2017", category: "感知與定位", description: "提供車輛高精度定位技術，為自動駕駛、導航等應用提供基礎。" },
+            { id: 'tech-100', name: "虛像投影標示系統", year: "2017", category: "感知與定位", description: "透過虛像投影技術，在駕駛視野中顯示重要標示資訊，提升駕駛安全與便利性。" },
+            { id: 'tech-101', name: "寬動態範圍攝影機調校技術", year: "2017", category: "感知與定位", description: "提供寬動態範圍攝影機的調校技術，確保在複雜光線條件下仍能獲取清晰影像。" },
+            { id: 'tech-102', name: "系統模擬驗證技術", year: "2017", category: "檢測與驗證技術", description: "提供複雜系統的模擬與驗證技術，加速產品開發與測試流程，降低實體測試成本。" },
+
+            // 2016
+            { id: 'tech-103', name: "車道跟隨與自動緊急煞車整合系統", year: "2016", category: "智駕與資通", description: "整合車道跟隨與自動緊急煞車功能，提供更全面、協同的駕駛輔助與安全防護。" },
+            { id: 'tech-104', name: "線上韌體更新技術", year: "2016", category: "智駕與資通", description: "提供車輛韌體的線上更新技術，實現遠程維護與功能升級，提升車輛智能化水平。" },
+            { id: 'tech-105', name: "車道維持控制與模擬分析技術", year: "2016", category: "新能源與機電整合", description: "提供車道維持控制技術的模擬與分析，優化控制策略，提升系統穩定性。" },
+            { id: 'tech-106', name: "主動式電池健康狀態估測技術", year: "2016", category: "新能源與機電整合", description: "提供主動式電池健康狀態估測技術，精準評估電池性能與壽命，提升電池管理效率。" },
+            { id: 'tech-107', name: "多線圈構型及異物偵測方法", year: "2016", category: "新能源與機電整合", description: "針對無線充電系統，提供多線圈構型設計與異物偵測方法，提升充電效率與安全性。" },
+            { id: 'tech-108', name: "無線充電多型態線圈構型", year: "2016", category: "新能源與機電整合", description: "提供無線充電多型態線圈構型設計，適應不同充電場景，提升充電彈性。" },
+            { id: 'tech-109', name: "轉向扭力角度感測器", year: "2016", category: "新能源與機電整合", description: "提供轉向扭力角度感測器技術，精準測量方向盤扭力與角度，應用於電動輔助轉向系統。" },
+            { id: 'tech-110', name: "電動巴士電動輔助轉向(EPS)模組", year: "2016", category: "新能源與機電整合", description: "為電動巴士提供電動輔助轉向模組，提升操控輕便性與節能效果。" },
+            { id: 'tech-111', name: "防鎖死煞車系統(ABS)電子控制單元(ECU)", year: "2016", category: "新能源與機電整合", description: "提供防鎖死煞車系統的電子控制單元模組，確保車輛在緊急煞車時的穩定性與操控性。" },
+            { id: 'tech-112', name: "動態攝影機調校技術", year: "2016", category: "感知與定位", description: "提供動態攝影機的調校技術，確保在車輛移動時影像的穩定性與準確性。" },
+            { id: 'tech-113', name: "整合式駕駛監控系統", year: "2016", category: "感知與定位", description: "整合多種感測器數據，實現對駕駛人狀態的全面監控，提升行車安全。" },
+            { id: 'tech-114', name: "自動緊急煞車系統之行人防撞功能(AEB VRU Pedestrian)驗證技術", year: "2016", category: "檢測與驗證技術", description: "提供自動緊急煞車系統對行人防撞功能的驗證技術，確保系統在實際場景下的有效性。" },
+            { id: 'tech-115', name: "引擎燃燒模擬技術", year: "2016", category: "檢測與驗證技術", description: "提供引擎燃燒過程的模擬技術，優化燃燒效率，降低排放。" },
+            { id: 'tech-116', name: "大型車輛氣壓煞車失效偵測與備援系統", year: "2016", category: "檢測與驗證技術", description: "針對大型車輛，提供氣壓煞車失效偵測與備援系統，提升行車安全。" },
+            { id: 'tech-117', name: "液壓濾清器 SAEJ2312驗證技術", year: "2016", category: "檢測與驗證技術", description: "提供液壓濾清器符合SAEJ2312標準的驗證技術，確保其過濾性能與可靠性。" },
+            { id: 'tech-118', name: "簡易式車載污染量測系統", year: "2016", category: "檢測與驗證技術", description: "提供簡易型車載污染物量測系統，方便進行排放監測與數據收集。" },
+            { id: 'tech-119', name: "柴油碳微粒過濾器(DPF)負載量估測與參數鑑定技術", year: "2016", category: "檢測與驗證技術", description: "提供DPF負載量估測與參數鑑定技術，優化DPF再生策略，延長使用壽命。" },
+            { id: 'tech-120', name: "選擇性觸媒之自適應還原控制方法及系統", year: "2016", category: "環保節能", description: "提供選擇性觸媒還原系統的自適應控制技術，優化氮氧化物 (NOx) 排放處理效率。" },
+            { id: 'tech-121', name: "氣體互感現象分析系統及其分析方法", year: "2016", category: "環保節能", description: "提供氣體互感現象的分析系統與方法，應用於氣體感測器開發與性能優化。" },
+            { id: 'tech-122', name: "載具廢氣處理裝置及其處理方法", year: "2016", category: "環保節能", description: "提供載具廢氣處理裝置與方法，有效降低廢氣排放，符合環保法規。" },
+            { id: 'tech-123', name: "判斷不同生質柴油比例的處理方法及系統", year: "2016", category: "環保節能", description: "提供判斷生質柴油比例的技術，應用於燃料品質監測與引擎優化。" },
+            { id: 'tech-124', name: "柴油車排氣後處理系統藥劑自動辨識感應裝置", year: "2016", category: "環保節能", description: "提供柴油車排氣後處理系統藥劑的自動辨識裝置，確保系統正常運行與排放合規。" },
+            { id: 'tech-125', name: "收折式車輛空氣導流裝置及其操作方法", year: "2016", category: "環保節能", description: "提供收折式車輛空氣導流裝置，優化車輛空氣動力學性能，降低風阻與油耗。" },
+            { id: 'tech-126', name: "駕駛行為即時警示裝置", year: "2016", category: "環保節能", description: "提供駕駛行為的即時警示裝置，幫助駕駛人糾正不良駕駛習慣，提升行車安全與節能效果。" },
+
+            // 2015
+            { id: 'tech-127', name: "自動緊急煞車低速防撞系統", year: "2015", category: "智駕與資通", description: "在低速行駛時，自動偵測前方障礙物並啟動防撞功能，避免或減輕事故。" },
+            { id: 'tech-128', name: "車輛診斷通訊軟體開發與測試技術", year: "2015", category: "智駕與資通", description: "提供車輛診斷通訊軟體的開發與測試技術，支援車輛故障診斷與維護。" },
+            { id: 'tech-129', name: "自動駕駛輔助系統(ADAS)驗證技術", year: "2015", category: "新能源與機電整合", description: "提供自動駕駛輔助系統 (ADAS) 的驗證技術，確保系統功能符合設計要求與安全標準。" },
+            { id: 'tech-130', name: "移動載具控制系統", year: "2015", category: "新能源與機電整合", description: "提供移動載具的控制系統，實現對車輛運動的精確控制與路徑規劃。" },
+            { id: 'tech-131', name: "物流車用動能回收控制技術", year: "2015", category: "新能源與機電整合", description: "針對物流車輛，提供動能回收控制技術，提升能源利用效率，降低油耗。" },
+            { id: 'tech-132', name: "車內溫溼度控制技術與空調系統匹配技術", year: "2015", category: "新能源與機電整合", description: "提供車內溫濕度控制與空調系統的匹配技術，提升乘坐舒適性與能源效率。" },
+            { id: 'tech-133', name: "多訊號光學式生理感測系統", year: "2015", category: "感知與定位", description: "提供多訊號光學式生理感測系統，應用於駕駛人健康監測與疲勞預警。" },
+            { id: 'tech-134', name: "車用視覺式行人偵測系統", year: "2015", category: "感知與定位", description: "透過車用視覺系統偵測行人，提升行車安全，降低與行人相關的事故風險。" },
+            { id: 'tech-135', name: "濾清器阻塞預警技術", year: "2015", category: "檢測與驗證技術", description: "提供濾清器阻塞預警技術，即時監測濾清器狀態，避免因阻塞導致的性能下降或損壞。" },
+
+            // 2014
+            { id: 'tech-136', name: "倒車防撞系統", year: "2014", category: "智駕與資通", description: "提供倒車防撞系統，自動偵測後方障礙物並發出警示或啟動煞車，避免倒車事故。" },
+            { id: 'tech-137', name: "高載重電動輔助轉向系統(EPS)", year: "2014", category: "新能源與機電整合", description: "針對高載重車輛，提供電動輔助轉向系統，提升操控輕便性與安全性。" },
+            { id: 'tech-138', name: "熱泵空調系統匹配及節能化控制技術", year: "2014", category: "新能源與機電整合", description: "提供熱泵空調系統的匹配與節能化控制技術，提升電動車輛空調效率與續航力。" },
+            { id: 'tech-139', name: "輔助電力單元(APU)開發與介面設計技術", year: "2014", category: "新能源與機電整合", description: "提供輔助電力單元 (APU) 的開發與介面設計技術，為車輛提供額外電力支援。" },
+            { id: 'tech-140', name: "頭戴式顯示系統", year: "2014", category: "感知與定位", description: "提供頭戴式顯示系統的技術，將資訊投射到駕駛視野中，提升駕駛體驗與安全。" },
+            { id: 'tech-141', name: "燃油濾清器油水分離效率驗證系統", year: "2014", category: "檢測與驗證技術", description: "提供燃油濾清器油水分離效率的驗證系統，確保燃油品質與引擎保護。" },
+            { id: 'tech-142', name: "選擇性還原觸媒(SCR)系統控制與整合技術", year: "2014", category: "檢測與驗證技術", description: "提供SCR系統的控制與整合技術，優化氮氧化物 (NOx) 排放處理效率。" },
+            { id: 'tech-143', name: "重型車輛駕駛員節能駕駛行為判別與族群優劣分析技術", year: "2014", category: "檢測與驗證技術", description: "判別重型車輛駕駛員的節能駕駛行為，並進行族群優劣分析，提供節能培訓依據。" },
+            { id: 'tech-144', name: "可充電式能源車輛之充電模式EMC研測技術", year: "2014", category: "檢測與驗證技術", description: "提供可充電式能源車輛充電模式的電磁相容性 (EMC) 研發與測試技術。" },
+            { id: 'tech-145', name: "車輛機電系統 EMC特性模擬分析技術", year: "2014", category: "檢測與驗證技術", description: "提供車輛機電系統電磁相容性 (EMC) 特性的模擬與分析，優化設計，降低干擾。" },
+            { id: 'tech-146', name: "車輛底盤操安評價技術", year: "2014", category: "檢測與驗證技術", description: "提供車輛底盤操控穩定性與安全性評價技術，確保車輛行駛性能。" },
+            { id: 'tech-147', name: "電動車整車及電機/電子系統抗腐蝕驗證技術", year: "2014", category: "檢測與驗證技術", description: "提供電動車整車及電機/電子系統的抗腐蝕驗證技術，確保其在惡劣環境下的耐久性。" },
+
+            // 2013
+            { id: 'tech-148', name: "車輛翻覆警示系統", year: "2013", category: "智駕與資通", description: "提供車輛翻覆警示系統，預測翻覆風險並發出警示，提升行車安全。" },
+            { id: 'tech-149', name: "ISO14229之車輛診斷通訊協定技術", year: "2013", category: "智駕與資通", description: "提供符合ISO14229標準的車輛診斷通訊協定技術，支援車輛故障診斷與維護。" },
+            { id: 'tech-150', name: "SAE J1939 車網設計與診斷SDK技術", year: "2013", category: "智駕與資通", description: "提供SAE J1939車用網路設計與診斷SDK技術，方便開發車載通訊應用。" },
+            { id: 'tech-151', name: "電動車運行資料分析技術", year: "2013", category: "新能源與機電整合", description: "提供電動車運行資料的分析技術，優化車輛性能與能源管理策略。" },
+            { id: 'tech-152', name: "電動車動力系統可靠度驗證技術", year: "2013", category: "新能源與機電整合", description: "提供電動車動力系統的可靠度驗證技術，確保其在長期運行中的穩定性與耐久性。" },
+            { id: 'tech-153', name: "電動車動力系統監控平台", year: "2013", category: "新能源與機電整合", description: "提供電動車動力系統的監控平台，實時監測各部件狀態，方便故障診斷與維護。" },
+            { id: 'tech-154', name: "電池健康狀態動態估測技術", year: "2013", category: "新能源與機電整合", description: "提供電池健康狀態的動態估測技術，精準評估電池性能與壽命，提升電池管理效率。" },
+            { id: 'tech-155', name: "電動車熱泵系統匹配及控制技術", year: "2013", category: "新能源與機電整合", description: "提供電動車熱泵系統的匹配與控制技術，提升空調效率與續航力。" },
+            { id: 'tech-156', name: "可變傾角之轉向機構", year: "2013", category: "新能源與機電整合", description: "提供可變傾角轉向機構技術，提升車輛操控靈活性與穩定性。" },
+            { id: 'tech-157', name: "電動車整合式熱管理系統", year: "2013", category: "新能源與機電整合", description: "提供電動車整合式熱管理系統，統一管理各部件熱量，提升系統效率與性能。" },
+            { id: 'tech-158', name: "48V 電動輔助轉向系統", year: "2013", category: "新能源與機電整合", description: "提供48V電動輔助轉向系統技術，提升轉向輕便性與節能效果。" },
+            { id: 'tech-159', name: "複合式全景影像偵測系統", year: "2013", category: "感知與定位", description: "整合多個影像來源，提供車輛周圍的全景影像偵測，消除盲區，提升駕駛安全。" },
+            { id: 'tech-160', name: "選擇性還原觸媒(SCR)系統整合與應用技術", year: "2013", category: "檢測與驗證技術", description: "提供SCR系統的整合與應用技術，優化氮氧化物 (NOx) 排放處理效率。" },
+            { id: 'tech-161', name: "燃油濾清器過濾效率自動偵測系統", year: "2013", category: "檢測與驗證技術", description: "提供燃油濾清器過濾效率的自動偵測系統，確保燃油品質與引擎保護。" },
+
+            // 2012
+            { id: 'tech-162', name: "車輛翻覆警示系統", year: "2012", category: "智駕與資通", description: "提供車輛翻覆警示系統，預測翻覆風險並發出警示，提升行車安全。" },
+            { id: 'tech-163', name: "CAN 網路設計與增強型診斷介面SDK技術", year: "2012", category: "智駕與資通", description: "提供CAN網路設計與增強型診斷介面SDK技術，方便開發車載通訊應用。" },
+            { id: 'tech-164', name: "OSEK 網路管理功能模擬與測試技術", year: "2012", category: "智駕與資通", description: "提供OSEK網路管理功能的模擬與測試技術，確保車載軟體系統的穩定性。" },
+            { id: 'tech-165', name: "電動車熱泵系統及控制器", year: "2012", category: "新能源與機電整合", description: "提供電動車熱泵系統及其控制器技術，提升空調效率與續航力。" },
+            { id: 'tech-166', name: "電池退化估測演算技術", year: "2012", category: "新能源與機電整合", description: "提供電池退化估測演算法，精準評估電池壽命，優化電池管理。" },
+            { id: 'tech-167', name: "電動車漏電偵測系統", year: "2012", category: "新能源與機電整合", description: "提供電動車漏電偵測系統，確保高壓系統的安全性。" },
+            { id: 'tech-168', name: "激發式轉角感測器", year: "2012", category: "新能源與機電整合", description: "提供激發式轉角感測器技術，精準測量轉向角度，應用於轉向系統。" },
+            { id: 'tech-169', name: "電子式真空煞車助力系統", year: "2012", category: "新能源與機電整合", description: "提供電子式真空煞車助力系統，提升煞車響應速度與踏板感。" },
+            { id: 'tech-170', name: "立體視覺前方安全系統", year: "2012", category: "感知與定位", description: "透過立體視覺技術，實現前方障礙物的精準偵測與距離判斷，提升行車安全。" },
+            { id: 'tech-171', name: "微結構光導式車燈系統開發", year: "2012", category: "感知與定位", description: "開發微結構光導式車燈系統，實現更均勻、高效的照明效果。" },
+            { id: 'tech-172', name: "整車電磁相容性(EMC)研測技術", year: "2012", category: "檢測與驗證技術", description: "提供整車電磁相容性 (EMC) 的研發與測試技術，確保車輛電子系統穩定運行。" },
+
+            // 2011
+            { id: 'tech-173', name: "智慧避障控制技術", year: "2011", category: "智駕與資通", description: "提供智慧避障控制技術，使車輛能自動識別並避開障礙物，提升自動駕駛安全性。" },
+            { id: 'tech-174', name: "停車位智慧導引系統", year: "2011", category: "智駕與資通", description: "提供停車位智慧導引系統，幫助駕駛人快速找到停車位並進行導引。" },
+            { id: 'tech-175', name: "CAN 系統測試及無線診斷技術", year: "2011", category: "智駕與資通", description: "提供CAN系統的測試與無線診斷技術，方便車輛故障診斷與維護。" },
+            { id: 'tech-176', name: "電動車輛實驗運行技術", year: "2011", category: "新能源與機電整合", description: "提供電動車輛的實驗運行技術，支援電動車輛的性能測試與數據採集。" },
+            { id: 'tech-177', name: "充電站電能監控與服務平台", year: "2011", category: "新能源與機電整合", description: "提供充電站的電能監控與服務平台，實現充電設施的智慧化管理。" },
+            { id: 'tech-178', name: "電池管理系統", year: "2011", category: "新能源與機電整合", description: "提供電池管理系統 (BMS) 技術，優化電池充放電、健康狀態監測與壽命管理。" },
+            { id: 'tech-179', name: "電動車整車控制單元", year: "2011", category: "新能源與機電整合", description: "提供電動車整車控制單元 (VCU) 技術，實現對電動車各子系統的協同控制。" },
+            { id: 'tech-180', name: "高效率熱泵及控制系統", year: "2011", category: "新能源與機電整合", description: "提供高效率熱泵系統及其控制技術，提升車輛空調的節能效果。" },
+            { id: 'tech-181', name: "整合式扭力感測器", year: "2011", category: "新能源與機電整合", description: "提供整合式扭力感測器技術，精準測量扭力，應用於動力傳動系統。" },
+            { id: 'tech-182', name: "低速行人偵測系統", year: "2011", category: "感知與定位", description: "提供低速行人偵測系統，在低速行駛時偵測行人，避免碰撞，提升城市交通安全。" },
+            { id: 'tech-183', name: "車輛機電模組 EMC特性分析技術", year: "2011", category: "檢測與驗證技術", description: "提供車輛機電模組電磁相容性 (EMC) 特性分析技術，優化設計，降低電磁干擾。" },
+
+            // 2010
+            { id: 'tech-184', name: "車道偏離警示系統晶片設計", year: "2010", category: "智駕與資通", description: "提供車道偏離警示系統 (LDWS) 的晶片設計技術，實現車道偏離的即時警示。" },
+            { id: 'tech-185', name: "盲點警示系統晶片設計", year: "2010", category: "智駕與資通", description: "提供盲點警示系統 (BSD) 的晶片設計技術，實現車輛盲區的即時監測與警示。" },
+            { id: 'tech-186', name: "CAN 網路設計與增強型診斷介面技術", year: "2010", category: "智駕與資通", description: "提供CAN網路設計與增強型診斷介面技術，方便車載通訊系統的開發與診斷。" },
+            { id: 'tech-187', name: "DSRC 通訊效能測試技術", year: "2010", category: "智駕與資通", description: "提供DSRC (Dedicated Short Range Communications) 通訊效能的測試技術，確保車載通訊系統的可靠性。" },
+            { id: 'tech-188', name: "電動車行車監控與服務平台", year: "2010", category: "新能源與機電整合", description: "提供電動車行車監控與服務平台，實現對電動車運行狀態的遠程監控與管理。" },
+            { id: 'tech-189', name: "電動車空調(冷房)系統與調控技術", year: "2010", category: "新能源與機電整合", description: "提供電動車空調系統的設計與調控技術，提升乘坐舒適性與能源效率。" },
+            { id: 'tech-190', name: "影像式倒車障礙物偵測警示系統", year: "2010", category: "感知與定位", description: "透過影像偵測技術，提供倒車時的障礙物警示，提升倒車安全性。" },
+            { id: 'tech-191', name: "雙視覺前方安全警示系統", year: "2010", category: "感知與定位", description: "結合雙視覺技術，提供前方安全警示，提升駕駛對前方路況的感知能力。" },
+            { id: 'tech-192', name: "車輛慣性定位系統", year: "2010", category: "感知與定位", description: "提供車輛慣性定位系統，在GPS訊號不佳時仍能保持定位精度。" },
+            { id: 'tech-193', name: "車輛底盤 CAE分析技術", year: "2010", category: "電腦輔助工程設計與分析", description: "利用CAE技術對車輛底盤進行分析，優化其結構設計與性能。" },
+            { id: 'tech-194', name: "電動車輛測試驗證技術", year: "2010", category: "檢測與驗證技術", description: "提供電動車輛的全面測試與驗證服務，確保其性能、安全與可靠性。" },
+            { id: 'tech-195', name: "電動車電池組性能驗證技術", year: "2010", category: "檢測與驗證技術", description: "提供電動車電池組的性能驗證技術，評估其能量密度、壽命與安全性。" },
+            { id: 'tech-196', name: "車輛零組件振動試驗規格制定技術", year: "2010", category: "檢測與驗證技術", description: "提供車輛零組件振動試驗的規格制定技術，確保產品在振動環境下的可靠性。" },
+            { id: 'tech-197', name: "車載資通訊零組件天線耦合訊號連線技術", year: "2010", category: "檢測與驗證技術", description: "提供車載資通訊零組件天線耦合訊號連線技術，優化通訊性能，降低干擾。" },
+            { id: 'tech-198', name: "機電模組控制電路EMC分析改良技術", year: "2010", category: "檢測與驗證技術", description: "提供機電模組控制電路電磁相容性 (EMC) 分析與改良技術，提升產品抗干擾能力。" },
+
+            // 2009
+            { id: 'tech-199', name: "全週影像停車輔助系統", year: "2009", category: "智駕與資通", description: "提供車輛周圍的全週影像，輔助駕駛人安全停車，消除盲區。" },
+            { id: 'tech-200', name: "CAN 網路設計&通訊測試技術", year: "2009", category: "智駕與資通", description: "提供CAN網路的設計與通訊測試技術，確保車載網路的穩定運行。" },
+            { id: 'tech-201', name: "車間通訊防撞警示系統", year: "2009", category: "智駕與資通", description: "實現車輛之間的通訊，提供防撞警示，提升車隊行駛的安全性。" },
+            { id: 'tech-202', name: "自動停車導引系統(自動停車技術)", year: "2009", category: "智駕與資通", description: "提供自動停車導引系統，幫助駕駛人輕鬆完成停車操作。" },
+            { id: 'tech-203', name: "整合式電子駐煞車系統", year: "2009", category: "新能源與機電整合", description: "提供整合式電子駐煞車系統 (EPB) 技術，提升停車便利性與安全性。" },
+            { id: 'tech-204', name: "電動輔助轉向系統(EPS)", year: "2009", category: "新能源與機電整合", description: "提供電動輔助轉向系統 (EPS) 技術，提升轉向輕便性與節能效果。" },
+            { id: 'tech-205', name: "駕駛者狀態監控系統", year: "2009", category: "感知與定位", description: "監控駕駛人狀態，如疲勞、分心，並發出警示，提升行車安全。" },
+            { id: 'tech-206', name: "影像式適路性頭燈系統(IAFS)", year: "2009", category: "感知與定位", description: "透過影像辨識路況，自動調整頭燈照射範圍和亮度，提升夜間行車安全。" },
+            { id: 'tech-207', name: "車輛電子產品暫態效應偵錯改良技術", year: "2009", category: "檢測與驗證技術", description: "提供車輛電子產品暫態效應的偵錯與改良技術，提升產品穩定性。" },
+
+            // 2008
+            { id: 'tech-208', name: "先進停車導引系統(自動停車技術)", year: "2008", category: "智駕與資通", description: "提供先進的自動停車導引系統，實現更智慧、更精準的停車輔助。" },
+            { id: 'tech-209', name: "電子式駐煞車系統(EPB)", year: "2008", category: "新能源與機電整合", description: "提供電子式駐煞車系統 (EPB) 技術，提升停車便利性與安全性。" },
+            { id: 'tech-210', name: "車用電動空調馬達驅動控制技術", year: "2008", category: "新能源與機電整合", description: "提供車用電動空調馬達的驅動控制技術，提升空調效率與性能。" },
+            { id: 'tech-211', name: "駕駛者狀態偵測技術", year: "2008", category: "感知與定位", description: "提供駕駛者狀態偵測技術，識別駕駛疲勞或分心，提升行車安全。" },
+            { id: 'tech-212', name: "Keyless 雙頻天線設計技術", year: "2008", category: "感知與定位", description: "提供Keyless系統的雙頻天線設計技術，提升車輛解鎖與啟動的便利性與可靠性。" },
+            { id: 'tech-213', name: "超音波停車空間偵測技術", year: "2008", category: "感知與定位", description: "利用超音波感測器偵測停車空間，輔助駕駛人停車。" },
+            { id: 'tech-214', name: "機車振動噪音與耐久強度改良CAE設計技術", year: "2008", category: "電腦輔助工程設計與分析", description: "利用CAE技術對機車振動噪音與耐久強度進行改良設計與分析。" },
+            { id: 'tech-215', name: "小型四輪休閒車車架結構強度設計與改良 CAE 分析技術", year: "2008", category: "電腦輔助工程設計與分析", description: "利用CAE技術對小型四輪休閒車車架進行結構強度設計與改良分析。" },
+            { id: 'tech-216', name: "空氣囊設計開發CAE分析技術", year: "2008", category: "電腦輔助工程設計與分析", description: "利用CAE技術進行空氣囊的設計開發與分析，提升被動安全性能。" },
+            { id: 'tech-217', name: "大客車車身結構強度分析與改良設計流程技術", year: "2008", category: "電腦輔助工程設計與分析", description: "提供大客車車身結構強度分析與改良設計流程技術，提升車身安全性。" },
+            { id: 'tech-218', name: "車輛切換式電源產品偵錯改良技術", year: "2008", category: "檢測與驗證技術", description: "提供車輛切換式電源產品的偵錯與改良技術，提升電源系統的穩定性。" },
+            { id: 'tech-219', name: "振動與噪音傳遞路徑分析技術", year: "2008", category: "檢測與驗證技術", description: "提供振動與噪音傳遞路徑分析技術，幫助優化車輛NVH性能。" },
+
+            // 2007
+            { id: 'tech-220', name: "指紋車鑰系統開發", year: "2007", category: "智駕與資通", description: "開發指紋識別技術應用於車輛解鎖與啟動，提升安全性與便利性。" },
+            { id: 'tech-221', name: "盲點警示系統開發", year: "2007", category: "智駕與資通", description: "開發盲點警示系統，幫助駕駛人感知車輛盲區，降低變道事故風險。" },
+            { id: 'tech-222', name: "後視鏡、座椅個人化系統開發", year: "2007", category: "智駕與資通", description: "開發後視鏡與座椅的個人化設定系統，提升駕駛舒適性與便利性。" },
+            { id: 'tech-223', name: "晶片卡車載系統之車隊管理營運模式", year: "2007", category: "智駕與資通", description: "利用晶片卡技術，建立車載系統的車隊管理營運模式，提升車隊運營效率。" },
+            { id: 'tech-224', name: "高速攝影影像分析技術", year: "2007", category: "感知與定位", description: "提供高速攝影影像分析技術，應用於車輛動態行為分析與事故重建。" },
+            { id: 'tech-225', name: "行人碰撞安全防護 CAE分析與改良技術", year: "2007", category: "電腦輔助工程設計與分析", description: "利用CAE技術分析與改良行人碰撞安全防護設計，提升車輛對行人的保護。" },
+            { id: 'tech-226', name: "台車模擬側撞 CAE分析與改良技術", year: "2007", category: "電腦輔助工程設計與分析", description: "利用CAE技術模擬與分析台車側撞，優化車輛結構設計以提升側撞安全性。" },
+            { id: 'tech-227', name: "結構模態測試與分析技術(實驗與有限元素分析)", year: "2007", category: "電腦輔助工程設計與分析", description: "提供結構模態測試與有限元素分析技術，評估車輛結構的振動特性與剛度。" },
+            { id: 'tech-228', name: "實車碰撞研測技術", year: "2007", category: "檢測與驗證技術", description: "提供實車碰撞的研發與測試技術，評估車輛在真實碰撞場景下的安全性能。" },
+            { id: 'tech-229', name: "輪胎噪音檢測技術", year: "2007", category: "檢測與驗證技術", description: "提供輪胎噪音的檢測技術，評估輪胎的噪音性能，有助於提升車輛NVH表現。" },
+            { id: 'tech-230', name: "滾珠軸承噪音診斷技術", year: "2007", category: "檢測與驗證技術", description: "提供滾珠軸承噪音的診斷技術，幫助識別軸承故障，進行預防性維護。" },
+            { id: 'tech-231', name: "小型車振動噪音性能指標測試技術", year: "2007", category: "檢測與驗證技術", description: "提供小型車振動噪音性能指標的測試技術，評估車輛的舒適性與靜謐性。" },
+            { id: 'tech-232', name: "車輛影音多媒體產品EMC改良技術", year: "2007", category: "檢測與驗證技術", description: "提供車輛影音多媒體產品電磁相容性 (EMC) 的改良技術，降低電磁干擾，提升產品穩定性。" },
+
+            // 2006
+            { id: 'tech-233', name: "車道偏離警示技術", year: "2006", category: "智駕與資通", description: "提供車道偏離警示技術，在車輛偏離車道時發出警示，提升行車安全。" },
+            { id: 'tech-234', name: "車輛倒車軌跡輔助系統開發", year: "2006", category: "智駕與資通", description: "開發車輛倒車軌跡輔助系統，幫助駕駛人更精準地控制倒車路徑。" },
+            { id: 'tech-235', name: "前方車距偵測警示系統開發", year: "2006", category: "智駕與資通", description: "開發前方車距偵測警示系統，提醒駕駛人保持安全車距，避免追撞。" },
+            { id: 'tech-236', name: "車道偏移與前方車距警示整合系統開發", year: "2006", category: "智駕與資通", description: "整合車道偏移與前方車距警示功能，提供更全面的駕駛安全輔助。" },
+            { id: 'tech-237', name: "車輛平行停車輔助系統開發", year: "2006", category: "智駕與資通", description: "開發車輛平行停車輔助系統，幫助駕駛人輕鬆完成平行停車操作。" },
+            { id: 'tech-238', name: "先進LED車燈系統開發", year: "2006", category: "感知與定位", description: "開發先進LED車燈系統，提升照明效率、壽命與設計彈性。" },
+            { id: 'tech-239', name: "車輛行人碰撞安全防護設計CAE分析之研究", year: "2006", category: "電腦輔助工程設計與分析", description: "研究車輛行人碰撞安全防護設計的CAE分析方法，提升車輛對行人的保護。" },
+            { id: 'tech-240', name: "車輛後碰撞 CAE分析技術", year: "2006", category: "電腦輔助工程設計與分析", description: "利用CAE技術分析車輛後碰撞，優化車輛結構設計以提升後碰撞安全性。" },
+            { id: 'tech-241', name: "正撞防護系統CAE分析技術", year: "2006", category: "電腦輔助工程設計與分析", description: "利用CAE技術分析正撞防護系統，評估其在正面碰撞中的保護性能。" },
+            { id: 'tech-242', name: "車輛電子可靠度評估技術", year: "2006", category: "檢測與驗證技術", description: "提供車輛電子產品的可靠度評估技術，確保其在長期運行中的穩定性。" },
+            { id: 'tech-243', name: "車輛電子零組件EMC等效電路產品改良技術", year: "2006", category: "檢測與驗證技術", description: "提供車輛電子零組件電磁相容性 (EMC) 等效電路產品的改良技術，降低電磁干擾。" },
+            { id: 'tech-244', name: "機車引擎動態噪音改善技術", year: "2006", category: "檢測與驗證技術", description: "提供機車引擎動態噪音的改善技術，提升騎乘舒適性與靜謐性。" },
+
+            // 2005
+            { id: 'tech-245', name: "自動轉向燈控制系統開發", year: "2005", category: "智駕與資通", description: "開發自動轉向燈控制系統，根據轉向角度自動開啟轉向燈，提升行車安全。" },
+            { id: 'tech-246', name: "車輛動態特性量測技術", year: "2005", category: "檢測與驗證技術", description: "提供車輛動態特性量測技術，評估車輛的操控穩定性與行駛性能。" },
+
+            // 2004
+            { id: 'tech-247', name: "先進車燈光學系統設計分析技術", year: "2004", category: "感知與定位", description: "提供先進車燈光學系統的設計與分析技術，優化照明效果與光型分佈。" },
+            { id: 'tech-248', name: "組裝電路板模擬分析技術", year: "2004", category: "感知與定位", description: "提供組裝電路板的模擬分析技術，優化電路板設計與性能。" },
+            { id: 'tech-249', name: "車輛及零組件 CAE分析技術", year: "2004", category: "電腦輔助工程設計與分析", description: "利用CAE技術對車輛及零組件進行分析，優化其結構設計與性能。" },
+            { id: 'tech-250', name: "小客車車內音評審團主觀評估技術", year: "2004", category: "檢測與驗證技術", description: "提供小客車車內音質的主觀評估技術，提升乘坐舒適性。" },
+            { id: 'tech-251', name: "大客車車體結構基本圖面繪製與分析技術", year: "2004", category: "檢測與驗證技術", description: "提供大客車車體結構的基本圖面繪製與分析技術，支援車體設計與製造。" },
+            { id: 'tech-252', name: "汽車座椅之設計開發與測試分析整合性技術", year: "2004", category: "檢測與驗證技術", description: "提供汽車座椅的設計開發與測試分析整合技術，提升座椅舒適性與安全性。" },
+            { id: 'tech-253', name: "機車實車煞車測試及評價技術(不含ABS)", year: "2004", category: "檢測與驗證技術", description: "提供機車實車煞車測試與評價技術，評估煞車性能。" },
+            { id: 'tech-254', name: "小客車實車煞車性能測試及評價技術(不含ABS系統)", year: "2004", category: "檢測與驗證技術", description: "提供小客車實車煞車性能測試與評價技術，評估煞車性能。" },
+            { id: 'tech-255', name: "小客車定圓迴轉測試及評價技術", year: "2004", category: "檢測與驗證技術", description: "提供小客車定圓迴轉測試與評價技術，評估車輛操控穩定性。" },
+            { id: 'tech-256', name: "小客車步階轉向測試及評價技術", year: "2004", category: "檢測與驗證技術", description: "提供小客車步階轉向測試與評價技術，評估車輛轉向響應性。" },
+
+            // 2003
+            { id: 'tech-257', name: "先進頭燈控制器開發", year: "2003", category: "感知與定位", description: "開發先進頭燈控制器，實現對車燈功能的智慧化控制。" },
+            { id: 'tech-258', name: "消音器傳輸損失模擬軟體", year: "2003", category: "檢測與驗證技術", description: "提供消音器傳輸損失的模擬軟體，優化消音器設計，降低噪音。" },
+            { id: 'tech-259', name: "汽車整車台上路況模擬測試技術", year: "2003", category: "檢測與驗證技術", description: "提供汽車整車台上路況模擬測試技術，在實驗室環境下模擬真實路況進行測試。" },
+            { id: 'tech-260', name: "鋁輪圈設計分析/製造/測試整合技術", year: "2003", category: "檢測與驗證技術", description: "提供鋁輪圈設計分析、製造與測試的整合技術，提升輪圈性能與品質。" },
+
+            // 2002
+            { id: 'tech-261', name: "兒童保護裝置研發及驗證輔導技術", year: "2002", category: "檢測與驗證技術", description: "提供兒童保護裝置的研發與驗證輔導技術，確保兒童乘車安全。" },
+            { id: 'tech-262', name: "CNAP 車廂聲場模擬分析技術", year: "2002", category: "檢測與驗證技術", description: "提供CNAP車廂聲場模擬分析技術，優化車內音響效果與靜謐性。" },
+            { id: 'tech-263', name: "高速周回路之應用技術與風險評估規劃", year: "2002", category: "檢測與驗證技術", description: "提供高速周回路的應用技術與風險評估規劃，支援高速測試場地建設與運營。" },
+            { id: 'tech-264', name: "試車場硬體設施及管理作業系統", year: "2002", category: "檢測與驗證技術", description: "提供試車場硬體設施與管理作業系統，提升測試效率與管理水平。" },
+            { id: 'tech-265', name: "機車整車及車輛零組件電磁相容檢測技術", year: "2002", category: "檢測與驗證技術", description: "提供機車整車及車輛零組件的電磁相容性 (EMC) 檢測技術，確保產品穩定運行。" },
+            { id: 'tech-266', name: "大型車防鎖死氣壓煞車系統檢測技術", year: "2002", category: "檢測與驗證技術", description: "提供大型車防鎖死氣壓煞車系統的檢測技術，確保煞車性能與安全性。" },
+            { id: 'tech-267', name: "大貨車安全防護裝置強度計算及檢測技術", year: "2002", category: "檢測與驗證技術", description: "提供大貨車安全防護裝置的強度計算與檢測技術，確保其在碰撞中的保護性能。" },
+
+            // 2001
+            { id: 'tech-268', name: "機車整車台上路況模擬測試技術", year: "2001", category: "檢測與驗證技術", description: "提供機車整車台上路況模擬測試技術，在實驗室環境下模擬真實路況進行測試。" },
+
+            // 1998
+            { id: 'tech-269', name: "車輛零組件單軸向油壓缸疲勞耐久測試技術", year: "1998", category: "檢測與驗證技術", description: "提供車輛零組件單軸向油壓缸的疲勞耐久測試技術，評估其壽命與可靠性。" },
+
+            // 1997
+            { id: 'tech-270', name: "機車音質評估測試技術", year: "1997", category: "檢測與驗證技術", description: "提供機車音質評估測試技術，評估機車行駛噪音的品質與舒適性。" },
+            { id: 'tech-271', name: "機車消音器最佳化之研究", year: "1997", category: "檢測與驗證技術", description: "研究機車消音器的最佳化設計，以降低噪音並提升性能。" },
+            { id: 'tech-272', name: "進排氣閥門振動噪音檢測技術", year: "1997", category: "檢測與驗證技術", description: "提供進排氣閥門振動噪音的檢測技術，幫助優化引擎噪音表現。" },
+            { id: 'tech-273', name: "燃燒噪音檢測技術", year: "1997", category: "檢測與驗證技術", description: "提供燃燒噪音的檢測技術，分析引擎燃燒過程產生的噪音特性。" },
+            { id: 'tech-274', name: "傳動系齒輪振動噪音測試技術", year: "1997", category: "檢測與驗證技術", description: "提供傳動系齒輪振動噪音的測試技術，評估齒輪傳動的平穩性與噪音水平。" },
+            { id: 'tech-275', name: "排氣尾流音質評估技術", year: "1997", category: "檢測與驗證技術", description: "提供排氣尾流音質評估技術，分析排氣系統產生的聲音品質。" },
+            { id: 'tech-276', name: "機車實車應力量測及分析應用技術", year: "1997", category: "檢測與驗證技術", description: "提供機車實車應力量測及分析應用技術，評估車架結構的應力分佈與強度。" }
         ];
 
         const patents = [
-            // 審查中尚未獲證之可授權專利項目 (表1)
-            { id: 'patent-001', name: "自動駕駛車輛通訊安全系統及方法", area: "智駕與資通", country: "中國大陸", type: "發明", date: "2024-05-03", number: "CN117978410A", status: "pending", description: "此專利提供一套自動駕駛車輛的通訊安全系統與方法，旨在防範網路攻擊，確保車輛間及車輛與基礎設施間通訊的完整性與機密性，提升自駕系統的整體安全性。對於車用聯盟在資安領域的佈局至關重要。" },
+            // 審查中尚未獲證之可授權專利項目 (表1 - 完整匯入)
+            { id: 'patent-001', name: "自動駕駛車輛通訊安全系統及方法", area: "智駕與資通", country: "中國大陸", type: "發明", date: "2024-05-03", number: "CN117978410A", status: "pending", description: "此專利提供一套自動駕駛車輛的通訊安全系統與方法，旨在防範網路攻擊，確保車輛間及車輛與基礎設施間通訊的完整性與機密性，提升自駕系統的整體安全性。對於車用零組件聯盟在資安領域的佈局至關重要。" },
             { id: 'patent-002', name: "磁導式轉轍系統及磁導式轉轍方法", area: "智駕與資通", country: "中國大陸", type: "發明", date: "2024-05-24", number: "CN118068826A", status: "pending", description: "本專利涉及一種磁導式轉轍系統，用於引導車輛在特定路徑上精確行駛，特別適用於自動導引車輛 (AGV) 或特定軌道運輸系統，提供高精度的路徑切換能力。在智慧物流、自動倉儲等場景應用廣泛。" },
-            { id: 'patent-003', name: "氫氣溫控系統、低溫儲貨裝置及低溫儲貨裝置的分區控溫方法", area: "新能源與機電整合", country: "中國大陸", type: "發明", date: "2024-08-16", number: "CN118507781A", status: "pending", description: "此專利針對氫氣儲存與運輸，提出一套先進的溫控系統與分區控溫方法，確保低溫儲氫裝置的穩定性與安全性，對於氫能物流及應用至關重要。有助於氫燃料電池車輛的商業化推動。" },
-            { id: 'patent-004', name: "電控煞車總泵", area: "新能源與機電整合", country: "中國大陸", type: "發明", date: "2024-06-28", number: "CN118254918A", status: "pending", description: "本專利提供一種電控煞車總泵，實現煞車系統的電子化控制，提升煞車響應速度與精準性，為未來線控煞車系統的發展奠定基礎。對於電動車輛的煞車系統升級具有潛力。" },
-            { id: 'patent-005', name: "艙內偵測方法及其系統", area: "感知與定位", country: "美國", type: "發明", date: "2024-03-28", number: "US20240104943A1", status: "pending", description: "此專利涵蓋車輛艙內偵測技術，能有效監測駕駛人狀態、乘客行為及車內物品，提升行車安全與乘坐體驗，並為智慧座艙應用提供數據支持。在駕駛監控系統 (DMS) 和乘客監控系統 (OMS) 領域有廣泛應用。" },
-            { id: 'patent-006', name: "計算機視覺式車輛定位融合系統及方法", area: "感知與定位", country: "中國大陸", type: "發明", date: "2024-05-14", number: "CN118033704A", status: "pending", description: "本專利結合計算機視覺與多感測器融合技術，提供高精度、高魯棒性的車輛定位解決方案，即使在 GPS 訊號不佳的環境下也能保持精準定位。對於自動駕駛車輛的精準導航至關重要。" },
-            // Add more pending patents from PDF
-            { id: 'patent-018', name: "車隊停站與派遣的決策系統及其決策方法", area: "智駕與資通", country: "中國大陸", type: "發明", date: "2024-05-07", number: "CN117994963A", status: "pending", description: "本專利提供一套車隊管理決策系統，優化車輛停站與派遣的效率與策略，適用於物流、共享出行等領域。" },
-            { id: 'patent-019', name: "自駕車之路徑規劃系統及方法", area: "智駕與資通", country: "中國大陸", type: "發明", date: "2023-01-20", number: "CN115626181A", status: "pending", description: "此專利涉及自駕車的路徑規劃系統與方法，旨在為自動駕駛車輛提供安全、高效、舒適的行駛路徑。" },
-            { id: 'patent-020', name: "虛擬軌道偵測系統及其方法", area: "感知與定位", country: "中國大陸", type: "發明", date: "2023-03-03", number: "CN115723751A", status: "pending", description: "本專利提供虛擬軌道偵測系統，用於精準識別和追蹤車輛行駛的虛擬路徑，提升自動駕駛的精確性。" },
-            { id: 'patent-021', name: "傳感器融合的時序同步方法", area: "感知與定位", country: "中國大陸", type: "發明", date: "2024-04-16", number: "CN117890902A", status: "pending", description: "此專利涉及多感測器融合中的時序同步方法，確保不同感測器數據的時間一致性，提升融合感知結果的準確性。" },
+            { id: 'patent-003', name: "車隊停站與派遣的決策系統及其決策方法", area: "智駕與資通", country: "中國大陸", type: "發明", date: "2024-05-07", number: "CN117994963A", status: "pending", description: "本專利提供一套車隊管理決策系統，優化車輛停站與派遣的效率與策略，適用於物流、共享出行等領域。" },
+            { id: 'patent-004', name: "車隊停站與派遣的決策系統及 其決策方法", area: "智駕與資通", country: "美國", type: "發明", date: "2024-05-30", number: "US20240177088A1", status: "pending", description: "此專利涉及車隊的停站與派遣決策系統，旨在提升車隊運營效率與服務品質，適用於智慧物流與交通管理。" },
+            { id: 'patent-005', name: "自駕車之路徑規劃系統及方法", area: "智駕與資通", country: "中國大陸", type: "發明", date: "2023-01-20", number: "CN115626181A", status: "pending", description: "本專利提供自駕車的路徑規劃系統與方法，旨在為自動駕駛車輛提供安全、高效、舒適的行駛路徑。" },
+            { id: 'patent-006', name: "隊列異時避障系統及其方法", area: "智駕與資通", country: "中國大陸", type: "發明", date: "2023-05-12", number: "CN116107297A", status: "pending", description: "此專利涉及車輛隊列在不同時間點進行避障的系統與方法，提升車隊行駛的安全性與協同性。" },
+            { id: 'patent-007', name: "隊列異時避障系統及其方法", area: "智駕與資通", country: "美國", type: "發明", date: "2023-06-01", number: "US20230169871A1", status: "pending", description: "本專利提供車輛隊列異時避障的系統與方法，確保車隊在複雜環境下安全行駛，避免碰撞。" },
+            { id: 'patent-008', name: "基於雲端運算之隊列跟車決策系統及其決策方法", area: "智駕與資通", country: "中國大陸", type: "發明", date: "2023-05-05", number: "CN116061931A", status: "pending", description: "此專利利用雲端運算，提供車輛隊列跟車的決策系統與方法，提升車隊行駛的效率與穩定性。" },
+            { id: 'patent-009', name: "自動駕駛協控系統與控制方法", area: "智駕與資通", country: "中國大陸", type: "發明", date: "2021-05-28", number: "CN112859825A", status: "pending", description: "本專利提供自動駕駛車輛的協同控制系統與方法，實現多車協同作業，提升整體交通效率。" },
+            { id: 'patent-010', name: "虛擬軌道之車輛移動決策系統及其方法", area: "智駕與資通", country: "美國", type: "發明", date: "2025-05-22", number: "US20250162610A1", status: "pending", description: "此專利涉及虛擬軌道下車輛移動的決策系統與方法，確保車輛在預設路徑上精確、安全行駛。" },
+            { id: 'patent-011', name: "虛擬軌道之車輛移動決策系統及其方法", area: "智駕與資通", country: "日本", type: "發明", date: "2025-06-02", number: "JP2025083722A", status: "pending", description: "本專利提供虛擬軌道下的車輛移動決策系統，提升自動駕駛在特定場景下的精準度與可靠性。" },
+            { id: 'patent-012', name: "車道變換最小風險決策系統及方法與非暫態電腦可讀媒體", area: "智駕與資通", country: "美國", type: "發明", date: "2025-05-29", number: "US20250171015A1", status: "pending", description: "此專利提供車道變換時的最小風險決策系統，旨在降低變道風險，提升自動駕駛的安全性。" },
+            { id: 'patent-013', name: "車道變換決策系統及方法與非暫態電腦可讀媒體", area: "智駕與資通", country: "日本", type: "發明", date: "2025-06-11", number: "JP2025088113A", status: "pending", description: "本專利涉及車道變換的決策系統與方法，優化自動駕駛車輛的變道行為，確保安全平穩。" },
+            { id: 'patent-014', name: "車輛隊列路口決策系統及方法", area: "智駕與資通", country: "日本", type: "發明", date: "2025-06-11", number: "JP2025087982A", status: "pending", description: "此專利提供車輛隊列在路口進行決策的系統與方法，提升車隊在複雜路口環境下的通行效率與安全性。" },
+            { id: 'patent-015', name: "車輛隊列路口決策系統及方法", area: "智駕與資通", country: "美國", type: "發明", date: "2025-05-15", number: "US20250155890A1", status: "pending", description: "本專利涉及車輛隊列在路口進行決策的系統與方法，旨在優化車隊在交叉路口的協同行為，減少交通擁堵。" },
+            { id: 'patent-016', name: "具預期功能安全場景蒐集及自我更新的系統及其方法", area: "智駕與資通", country: "中國大陸", type: "發明", date: "2024-05-17", number: "CN118051545A", status: "pending", description: "此專利提供具預期功能安全場景蒐集及自我更新的系統，提升自動駕駛系統在潛在危險場景下的安全應對能力。" },
+            { id: 'patent-017', name: "融合事故輔助鑑別與預期功能安全測試場景蒐集功能之方法", area: "智駕與資通", country: "中國大陸", type: "發明", date: "2024-05-17", number: "CN118046848A", status: "pending", description: "本專利涉及融合事故輔助鑑別與預期功能安全測試場景蒐集的方法，用於提升自動駕駛系統的測試效率與安全驗證。" },
+            { id: 'patent-018', name: "融合事故輔助鑑別與預期功能安全測試場景蒐集功能之方法", area: "智駕與資通", country: "美國", type: "發明", date: "2024-05-30", number: "US20240177537A1", status: "pending", description: "此專利提供融合事故輔助鑑別與預期功能安全測試場景蒐集的方法，有助於自動駕駛系統的持續改進與安全認證。" },
+            { id: 'patent-019', name: "具自我診斷功能的自動駕駛車輛之模態控制方法及底盤控制模組", area: "智駕與資通", country: "中國大陸", type: "發明", date: "2022-07-01", number: "CN114684181A", status: "pending", description: "本專利涉及具自我診斷功能的自動駕駛車輛模態控制方法與底盤控制模組，提升自動駕駛系統的故障容錯能力與可靠性。" },
+            { id: 'patent-020', name: "煞車踏感模擬器及煞車狀態評估方法", area: "智駕與資通", country: "中國大陸", type: "發明", date: "2025-04-18", number: "CN119840572A", status: "pending", description: "此專利提供煞車踏感模擬器及煞車狀態評估方法，用於評估和優化車輛煞車系統的性能與駕駛體驗。" },
+            { id: 'patent-021', name: "全方位預期功能安全測試系統及其方法", area: "智駕與資通", country: "中國大陸", type: "發明", date: "2025-04-22", number: "CN119860923A", status: "pending", description: "本專利提供全方位預期功能安全測試系統與方法，確保自動駕駛系統在各種複雜場景下的安全性能。" },
+            { id: 'patent-022', name: "多電力系統輸出控制裝置及方法", area: "智駕與資通", country: "中國大陸", type: "發明", date: "2025-05-13", number: "CN119975015A", status: "pending", description: "此專利涉及多電力系統的輸出控制裝置與方法，優化電力分配，提升系統效率與穩定性。" },
+            { id: 'patent-023', name: "全方位預期功能安全測試系統及其方法", area: "智駕與資通", country: "美國", type: "發明", date: "2025-05-29", number: "US20250171039A1", status: "pending", description: "本專利提供全方位預期功能安全測試系統與方法，確保自動駕駛系統在各種複雜場景下的安全性能。" },
+            { id: 'patent-024', name: "煞車踏感模擬器及煞車狀態評估方法", area: "智駕與資通", country: "美國", type: "發明", date: "2025-06-19", number: "US20250196826A1", status: "pending", description: "此專利提供煞車踏感模擬器及煞車狀態評估方法，用於評估和優化車輛煞車系統的性能與駕駛體驗。" },
+            { id: 'patent-025', name: "電控煞車總泵", area: "新能源與機電整合", country: "中國大陸", type: "發明", date: "2024-06-28", number: "CN118254918A", status: "pending", description: "本專利提供一種電控煞車總泵，實現煞車系統的電子化控制，提升煞車響應速度與精準性，為未來線控煞車系統的發展奠定基礎。對於電動車輛的煞車系統升級具有潛力。" },
+            { id: 'patent-026', name: "氫氣溫控系統、低溫儲貨裝置及低溫儲貨裝置的分區控溫方法", area: "新能源與機電整合", country: "中國大陸", type: "發明", date: "2024-08-16", number: "CN118507781A", status: "pending", description: "此專利針對氫氣儲存與運輸，提出一套先進的溫控系統與分區控溫方法，確保低溫儲氫裝置的穩定性與安全性，對於氫能物流及應用至關重要。有助於氫燃料電池車輛的商業化推動。" },
+            { id: 'patent-027', name: "氫氣溫控系統、低溫儲貨裝置及低溫儲貨裝置的分區控溫方法", area: "新能源與機電整合", country: "美國", type: "發明", date: "2024-10-31", number: "US20240359904A1", status: "pending", description: "本專利提供氫氣儲存與運輸的溫控系統與分區控溫方法，確保低溫儲氫裝置的穩定性與安全性，對氫能技術的發展至關重要。" },
+            { id: 'patent-028', name: "虛擬軌道偵測系統及其方法", area: "感知與定位", country: "中國大陸", type: "發明", date: "2023-03-03", number: "CN115723751A", status: "pending", description: "此專利提供虛擬軌道偵測系統與方法，用於精確識別和追蹤車輛行駛的虛擬路徑，提升自動駕駛的精確性。" },
+            { id: 'patent-029', name: "虛擬軌道偵測系統及其方法", area: "感知與定位", country: "美國", type: "發明", date: "2024-07-04", number: "US20240217521A1", status: "pending", description: "本專利涉及虛擬軌道偵測系統與方法，對於自動駕駛車輛在特定場景下的路徑引導具有重要應用。" },
+            { id: 'patent-030', name: "艙內偵測方法及其系統", area: "感知與定位", country: "美國", type: "發明", date: "2024-03-28", number: "US20240104943A1", status: "pending", description: "此專利涵蓋車輛艙內偵測技術，能有效監測駕駛人狀態、乘客行為及車內物品，提升行車安全與乘坐體驗，並為智慧座艙應用提供數據支持。" },
+            { id: 'patent-031', name: "計算機視覺式車輛定位融合系統及方法", area: "感知與定位", country: "中國大陸", type: "發明", date: "2024-05-14", number: "CN118033704A", status: "pending", description: "本專利結合計算機視覺與多感測器融合技術，提供高精度、高魯棒性的車輛定位解決方案，即使在 GPS 訊號不佳的環境下也能保持精準定位。對於自動駕駛車輛的精準導航至關重要。" },
+            { id: 'patent-032', name: "電腦視覺式車輛定位融合系統及方法", area: "感知與定位", country: "美國", type: "發明", date: "2024-06-20", number: "US20240203109A1", status: "pending", description: "此專利提供電腦視覺式車輛定位融合系統與方法，提升車輛在複雜環境下的定位精度與可靠性。" },
+            { id: 'patent-033', name: "傳感器融合的時序同步方法", area: "感知與定位", country: "中國大陸", type: "發明", date: "2024-04-16", number: "CN117890902A", status: "pending", description: "本專利涉及多感測器融合中的時序同步方法，確保不同感測器數據的時間一致性，提升融合感知結果的準確性。" },
+            { id: 'patent-034', name: "基於資訊融合的路口警示系統與方法", area: "感知與定位", country: "中國大陸", type: "發明", date: "2023-05-05", number: "CN116071913A", status: "pending", description: "此專利提供基於資訊融合的路口警示系統與方法，旨在提升駕駛人在複雜路口環境下的安全感知與應對能力。" },
+            { id: 'patent-035', name: "融合式車輛定位方法與系統", area: "感知與定位", country: "中國大陸", type: "發明", date: "2023-05-30", number: "CN116182841A", status: "pending", description: "本專利提供融合式車輛定位方法與系統，結合多種定位技術，實現高精度、高可靠性的車輛定位。" },
+            { id: 'patent-036', name: "障礙物偵測方法", area: "感知與定位", country: "德國", type: "發明", date: "2023-06-22", number: "DE102021006248A1", status: "pending", description: "此專利涉及障礙物偵測方法，旨在提升車輛對周圍環境中障礙物的識別能力與精準度。" },
+            { id: 'patent-037', name: "特徵點整合定位系統及特徵點整合定位方法", area: "感知與定位", country: "中國大陸", type: "發明", date: "2023-02-28", number: "CN115719446A", status: "pending", description: "本專利提供特徵點整合定位系統與方法，利用環境特徵點實現車輛的高精度定位。" },
+            { id: 'patent-038', name: "可提供環境資訊的動態圖資建立方法及系統", area: "感知與定位", country: "中國大陸", type: "發明", date: "2021-02-09", number: "CN112348993A", status: "pending", description: "此專利涉及可提供環境資訊的動態圖資建立方法與系統，為自動駕駛提供實時、精確的環境地圖數據。" },
+            { id: 'patent-039', name: "車輛偵測方法、基於光強度動態之夜間車輛偵測方法及其系統", area: "感知與定位", country: "德國", type: "發明", date: "2020-04-23", number: "DE102018129993A1", status: "pending", description: "本專利提供夜間車輛偵測方法，利用光強度動態變化，提升夜間行車時對其他車輛的偵測能力。" },
+            { id: 'patent-040', name: "基於權重調整的車輛定位方法及系統", area: "感知與定位", country: "中國大陸", type: "發明", date: "2025-01-07", number: "CN119268708A", status: "pending", description: "此專利提供基於權重調整的車輛定位方法與系統，優化多感測器定位數據的融合，提升定位精度。" },
+            { id: 'patent-041', name: "自駕接管判定方法及其系統", area: "感知與定位", country: "美國", type: "發明", date: "2025-06-05", number: "US20250178646A1", status: "pending", description: "本專利涉及自動駕駛系統的接管判定方法與系統，確保在必要時能安全、及時地將控制權移交給駕駛人。" },
+            { id: 'patent-042', name: "自駕接管判定方法及其系統", area: "感知與定位", country: "日本", type: "發明", date: "2025-06-11", number: "JP2025088215A", status: "pending", description: "此專利提供自動駕駛接管判定方法與系統，提升自動駕駛系統在人機協作模式下的安全性與可靠性。" },
+            { id: 'patent-043', name: "自駕接管判定方法及其系統", area: "感知與定位", country: "台灣", type: "發明", date: "2025-05-01", number: "TW202517494A", status: "pending", description: "本專利涉及自動駕駛接管判定方法與系統，確保自動駕駛系統在緊急情況下能安全地進行人機接管。" },
+            { id: 'patent-044', name: "視覺式車輛定位融合系統及其方法", area: "感知與定位", country: "美國", type: "發明", date: "2025-06-05", number: "US20250180361A1", status: "pending", description: "此專利提供視覺式車輛定位融合系統與方法，結合視覺與其他感測器數據，實現高精度車輛定位。" },
+            { id: 'patent-045', name: "視覺式車輛定位融合系統及其方法", area: "感知與定位", country: "中國大陸", type: "發明", date: "2024-01-12", number: "CN117387610A", status: "pending", description: "本專利涉及視覺式車輛定位融合系統與方法，提升車輛在複雜環境下的定位精度與可靠性。" },
+            { id: 'patent-046', name: "感知融合物件追蹤系統及其方法", area: "感知與定位", country: "美國", type: "發明", date: "2025-06-12", number: "US20250189658A1", status: "pending", description: "此專利提供感知融合物件追蹤系統與方法，整合多感測器數據，實現對環境中移動物件的精準追蹤。" },
+            { id: 'patent-047', name: "感知融合物件追蹤系統及其方法", area: "感知與定位", country: "中國大陸", type: "發明", date: "2024-01-30", number: "CN117475406A", status: "pending", description: "本專利涉及感知融合物件追蹤系統與方法，提升自動駕駛系統對環境中物件的感知與預測能力。" },
+            { id: 'patent-048', name: "人機介面之動態虛像顯示距離驗證方法及其系統", area: "感知與定位", country: "中國大陸", type: "發明", date: "2023-05-09", number: "CN116086395A", status: "pending", description: "此專利提供人機介面動態虛像顯示距離的驗證方法與系統，確保虛像顯示的精準性與使用者舒適度。" },
 
-            // 已獲證之可授權專利項目 (表2)
-            { id: 'patent-007', name: "自適應車速控制方法及其自適應車速控制裝置", area: "智駕與資通", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利提供一套自適應巡航控制系統 (ACC)，能根據路況與駕駛行為自動調整車速，提升行車舒適性與安全性。是先進駕駛輔助系統 (ADAS) 的核心功能之一。" },
-            { id: 'patent-008', name: "虛擬道路邊界之輔助駕駛裝置", area: "智駕與資通", country: "TW/CN", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利設計一種輔助駕駛裝置，透過虛擬道路邊界技術，協助駕駛人維持車道，降低行車疲勞並提升安全。對於車道維持輔助系統 (LKA) 的發展具有潛力。" },
-            { id: 'patent-009', name: "行車即時防撞警示系統及其方法", area: "智駕與資通", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利提供即時防撞警示系統 (FCW)，能預測潛在碰撞風險並及時提醒駕駛人，有效避免事故發生。提升車輛主動安全性能。" },
-            { id: 'patent-010', name: "電動車熱管理系統", area: "新能源與機電整合", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利針對電動車設計一套高效熱管理系統，優化電池、馬達及電控單元的散熱與溫度控制，提升續航里程與電池壽命。對於電動車輛的性能與可靠性有顯著提升。" },
-            { id: 'patent-011', name: "動能回充控制器、動能回充控制系統及其控制方法", area: "新能源與機電整合", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利開發一套動能回充控制技術，能最大化煞車時的能量回收效率，進一步提升電動車的能源利用率。有助於提升電動車的續航里程與節能表現。" },
-            { id: 'patent-012', name: "電池健康狀態估測裝置及方法", area: "新能源與機電整合", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利提供精準的電池健康狀態 (SOH) 估測技術，幫助使用者了解電池性能衰退情況，延長電池組使用壽命。對於電動車電池管理系統 (BMS) 至關重要。" },
-            { id: 'patent-013', name: "車輛頭燈自適應避光方法", area: "感知與定位", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利實現車輛頭燈的自適應避光功能，避免眩光影響對向來車，提升夜間行車安全。應用於智慧車燈系統，提升夜間駕駛體驗。" },
-            { id: 'patent-014', name: "車輛定位方法及其系統", area: "感知與定位", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利提供多種車輛定位方法與系統，結合不同感測器數據，實現高精度、高可靠性的車輛定位。對於自動駕駛與高精地圖應用具有重要價值。" },
-            { id: 'patent-015', name: "駕駛者狀態監控器測試方法及其測試系統", area: "感知與定位", country: "TW/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利開發駕駛者狀態監控系統 (DMS) 的測試方法，確保系統能有效偵測駕駛疲勞或分心，提升行車安全。是智慧座艙與主動安全的重要組成部分。" },
-            { id: 'patent-016', name: "濾煙器主動再生方法", area: "環保節能", country: "TW/CN/US/TH", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利提供柴油車濾煙器 (DPF) 的主動再生技術，有效清除微粒，降低排放污染，延長 DPF 使用壽命。對於柴油車的環保合規性具有重要意義。" },
-            { id: 'patent-017', name: "直覺式節能駕駛輔助方法與系統", area: "環保節能", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利開發一套直覺式節能駕駛輔助系統，透過即時回饋引導駕駛人採取更節能的駕駛行為，降低油耗與排放。有助於提升車輛的燃油經濟性。" },
-            // Add more granted patents from PDF
-            { id: 'patent-022', name: "車道維持系統", area: "智駕與資通", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利提供車道維持輔助系統，協助車輛保持在車道中央，降低駕駛疲勞，提升行車安全。" },
-            { id: 'patent-023', name: "車輛碰撞警示系統", area: "智駕與資通", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利提供車輛碰撞警示系統，能預測前方碰撞風險並發出警示，幫助駕駛人及時反應，避免或減輕事故。" },
-            { id: 'patent-024', name: "防鎖死煞車系統及控制方法", area: "新能源與機電整合", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利涉及防鎖死煞車系統 (ABS) 及其控制方法，確保車輛在緊急煞車時仍能保持方向控制能力，提升行車安全。" },
-            { id: 'patent-025', name: "車輛頭燈自適應調節系統", area: "感知與定位", country: "TW/CN", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利提供車輛頭燈的自適應調節系統，能根據行車環境自動調整頭燈照射範圍和亮度，提升夜間行車視野和安全性。" },
-            { id: 'patent-026', name: "車輛排放監測系統及方法", area: "環保節能", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利提供車輛排放的即時監測系統與方法，有助於車輛排放的合規性管理與環保數據收集。" }
+            // 已獲證之可授權專利項目 (表2 - 部分範例，待後續完整匯入)
+            { id: 'patent-049', name: "自適應車速控制方法及其自適應車速控制裝置", area: "智駕與資通", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利提供一套自適應巡航控制系統 (ACC)，能根據路況與駕駛行為自動調整車速，提升行車舒適性與安全性。是先進駕駛輔助系統 (ADAS) 的核心功能之一。" },
+            { id: 'patent-050', name: "虛擬道路邊界之輔助駕駛裝置", area: "智駕與資通", country: "TW/CN", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利設計一種輔助駕駛裝置，透過虛擬道路邊界技術，協助駕駛人維持車道，降低行車疲勞並提升安全。對於車道維持輔助系統 (LKA) 的發展具有潛力。" },
+            { id: 'patent-051', name: "行車即時防撞警示系統及其方法", area: "智駕與資通", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利提供即時防撞警示系統 (FCW)，能預測潛在碰撞風險並及時提醒駕駛人，有效避免事故發生。提升車輛主動安全性能。" },
+            { id: 'patent-052', name: "電動車熱管理系統", area: "新能源與機電整合", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利針對電動車設計一套高效熱管理系統，優化電池、馬達及電控單元的散熱與溫度控制，提升續航里程與電池壽命。對於電動車輛的性能與可靠性有顯著提升。" },
+            { id: 'patent-053', name: "動能回充控制器、動能回充控制系統及其控制方法", area: "新能源與機電整合", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利開發一套動能回充控制技術，能最大化煞車時的能量回收效率，進一步提升電動車的能源利用率。有助於提升電動車的續航里程與節能表現。" },
+            { id: 'patent-054', name: "電池健康狀態估測裝置及方法", area: "新能源與機電整合", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利提供精準的電池健康狀態 (SOH) 估測技術，幫助使用者了解電池性能衰退情況，延長電池組使用壽命。對於電動車電池管理系統 (BMS) 至關重要。" },
+            { id: 'patent-055', name: "車輛頭燈自適應避光方法", area: "感知與定位", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利實現車輛頭燈的自適應避光功能，避免眩光影響對向來車，提升夜間行車安全。應用於智慧車燈系統，提升夜間駕駛體驗。" },
+            { id: 'patent-056', name: "車輛定位方法及其系統", area: "感知與定位", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利提供多種車輛定位方法與系統，結合不同感測器數據，實現高精度、高可靠性的車輛定位。對於自動駕駛與高精地圖應用具有重要價值。" },
+            { id: 'patent-057', name: "駕駛者狀態監控器測試方法及其測試系統", area: "感知與定位", country: "TW/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利開發駕駛者狀態監控系統 (DMS) 的測試方法，確保系統能有效偵測駕駛疲勞或分心，提升行車安全。是智慧座艙與主動安全的重要組成部分。" },
+            { id: 'patent-058', name: "濾煙器主動再生方法", area: "環保節能", country: "TW/CN/US/TH", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利提供柴油車濾煙器 (DPF) 的主動再生技術，有效清除微粒，降低排放污染，延長 DPF 使用壽命。對於柴油車的環保合規性具有重要意義。" },
+            { id: 'patent-059', name: "直覺式節能駕駛輔助方法與系統", area: "環保節能", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利開發一套直覺式節能駕駛輔助系統，透過即時回饋引導駕駛人採取更節能的駕駛行為，降低油耗與排放。有助於提升車輛的燃油經濟性。" },
+            { id: 'patent-060', name: "車道維持系統", area: "智駕與資通", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利提供車道維持輔助系統，協助車輛保持在車道中央，降低駕駛疲勞，提升行車安全。" },
+            { id: 'patent-061', name: "車輛碰撞警示系統", area: "智駕與資通", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利提供車輛碰撞警示系統，能預測前方碰撞風險並發出警示，幫助駕駛人及時反應，避免或減輕事故。" },
+            { id: 'patent-062', name: "防鎖死煞車系統及控制方法", area: "新能源與機電整合", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利涉及防鎖死煞車系統 (ABS) 及其控制方法，確保車輛在緊急煞車時仍能保持方向控制能力，提升行車安全。" },
+            { id: 'patent-063', name: "車輛頭燈自適應調節系統", area: "感知與定位", country: "TW/CN", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "此專利提供車輛頭燈的自適應調節系統，能根據行車環境自動調整頭燈照射範圍和亮度，提升夜間行車視野和安全性。" },
+            { id: 'patent-064', name: "車輛排放監測系統及方法", area: "環保節能", country: "TW/CN/US", type: "發明", date: "N/A", number: "N/A", status: "granted", description: "本專利提供車輛排放的即時監測系統與方法，有助於車輛排放的合規性管理與環保數據收集。" }
         ];
 
         const techContainer = document.getElementById('technology-cards-container');
