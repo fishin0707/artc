@@ -8,44 +8,29 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Firebase SDKs -->
-    <script type="module">
+          <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // Global variables provided by the Canvas environment
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyCldCKQgnYjImfSjl7G1AjCxNcfJ_GzeVQ",
-  authDomain: "artc-134f7.firebaseapp.com",
-  projectId: "artc-134f7",
-  storageBucket: "artc-134f7.firebasestorage.app",
-  messagingSenderId: "151482779604",
-  appId: "1:151482779604:web:fc6214efa3e62ed744b841",
-  measurementId: "G-QG8W7H4LQN"
-};
-
+        const firebaseConfig = { 
+          apiKey: "AIzaSyCldCKQgnYjImfSjl7G1AjCxNcfJ_GzeVQ",
+          authDomain: "artc-134f7.firebaseapp.com",
+          projectId: "artc-134f7",
+          storageBucket: "artc-134f7.firebasestorage.app",
+          messagingSenderId: "151482779604",
+          appId: "1:151482779604:web:fc6214efa3e62ed744b841",
+          measurementId: "G-QG8W7H4LQN"
+        }; //
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-
         let app, db, auth;
 
         // Initialize Firebase and authenticate anonymously
         async function initializeFirebase() {
             try {
-                if (Object.keys(firebaseConfig).length === 0) {
-                    console.error("Firebase config is missing. Data submission will not work.");
-                    return;
-                }
                 app = initializeApp(firebaseConfig);
                 db = getFirestore(app);
                 auth = getAuth(app);
